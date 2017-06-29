@@ -75,29 +75,29 @@ $(function(){
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
 <article>			
-    <div id="hero" class="hero-section">
+    <div id="hero" class="hero-section" style="height: 350px;">
         
-        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-ride="" data-interval="10000">
+        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-ride="" data-interval="10000" style="height: 450px">
             
-            <div class="figure-holder-wrapper">
+            <!-- <div class="figure-holder-wrapper" style="height: 450px">
               <div class="container">
                   <div class="row">
-                      <div class="figure-holder">
+                      <div class="figure-holder" style="height: 450px">
 					  
-                        </div><!--//figure-holder-->
-                  </div><!--//row-->
-              </div><!--//container-->
-          </div><!--//figure-holder-wrapper-->
+                        </div>//figure-holder
+                  </div>//row
+              </div>//container
+          </div>//figure-holder-wrapper -->
             
          
          <!-- Wrapper for slides -->
          <div class="carousel-inner">
              
-            <div class="item item-1 active">
-               <div class="item-content container">
-                   <div class="item-content-inner">
+            <div class="item item-1 active" style="background-image: url('./bootstrap/assets/images/234.jpg'); height: 450px">
+               <div class="item-content container" style="height: 450px">
+                   <div class="item-content-inner" style="height: 450px">
 			
-						<div class="dropdown" style="height:50px; margin-top:140px;">
+						<div class="dropdown" style="height:50px; margin-top: 55px">
 							<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:center">
 									당신이 원하는 지역을 찾아보세요!!
 							</button>

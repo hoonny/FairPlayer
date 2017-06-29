@@ -295,8 +295,8 @@ text-align:right;
 }
 /* ======= Hero Section ======= */
 .hero-section {
-  min-height: 560px;
-  background: #494d55;
+  min-height: 450px;
+  
   position: relative;
 }
 .hero-section .figure-holder-wrapper {
@@ -855,13 +855,13 @@ text-align:right;
     margin-bottom: 0;
   }
   .hero-carousel {
-    height: 660px;
+    height: 550px;
   }
   .hero-section .carousel-inner {
-    height: 660px;
+    height: 550px;
   }
   .hero-carousel .carousel-inner .item {
-    height: 660px;
+    height: 550px;
   }
   .testimonials-section .item .profile-image {
     width: 60px;
