@@ -70,7 +70,7 @@ $(function(){
 </script>
 </head> 
 
-<body>
+<body  style="background-color: #F9FFFF">
 <header>
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
@@ -167,28 +167,20 @@ $(function(){
          <h3 style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf">인기 장소는 바로 여기!</h3>
             <h2 class="section-title" style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf" >Hot Service</h2>
                         
-            <div class="items-wrapper row">
-                <div class="item col-sm-4 col-xs-12">
-                    <div class="item-inner">
-                        <div class="figure-holder">
-                            <img class="figure-image" src="./bootstrap/assets/images/1.jpg" alt="image">
-                        </div><!--//figure-holder-->                  
-                    </div><!--//item-inner-->
+            <div class="items-wrapper row" style="width: 1300px; margin:  auto; margin-left: 10px">
+                <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 첫번쨰 그림  -->
+                            <img class="figure-image" src="./bootstrap/assets/images/111.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
-                <div class="item col-sm-4 col-xs-12">
-                    <div class="item-inner">
-                        <div class="figure-holder">
-                            <img class="figure-image" src="./bootstrap/assets/images/2.jpg" alt="image">
-                        </div><!--//figure-holder-->
-                    </div><!--//item-inner-->
+                
+                <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 두번쨰 그림  -->
+                            <img class="figure-image" src="./bootstrap/assets/images/2.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
-                <div class="item col-sm-4 col-xs-12">
-                    <div class="item-inner">
-                        <div class="figure-holder">
-                            <img class="figure-image" src="./bootstrap/assets/images/3.jpg" alt="image">
-                        </div><!--//figure-holder-->                      
-                    </div><!--//item-inner-->
+                
+                
+                <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px">
+                            <img class="figure-image" src="./bootstrap/assets/images/3.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
+                
             </div><!--//items-wrapper-->
         </div><!--//container-->
         </div>

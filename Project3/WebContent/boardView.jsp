@@ -93,12 +93,12 @@ $(function(){
 </script>
 </head>
 <body>
-- <div> 
+<div> 
      <jsp:include page="menu.jsp"></jsp:include>
    </div> 
    <br><br><br><br>
 <div class="container" style="width: 750px; margin: auto;">
-<table class="table table-bordered" style="width: 700px">
+<table class="table table-bordered" style="width: 700px; background-color: white;">
     
     
         <form method="post" encType="multiplart/form-data">
