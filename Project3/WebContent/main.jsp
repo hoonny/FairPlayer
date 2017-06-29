@@ -43,29 +43,33 @@ ul{
 a{
   color:#ffffff;
 }
+#abc {
+	font-style: normal;
+	font-size: 16px;
+	color: orange;
+}
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
-
 	var $test = $(".sub-slide>ul>li>button");
-	$test.click(function(){    
-	    var $gu = $(this).text();    
-	    var $sports = $(this).parent().siblings("h4").text();
-	    //alert("1");
-	    console.log($gu);
-	    //alert("2");
-	    console.log($sports);
-	    $.ajax({
-	       url : 'searchmain.do',
-	       data : {sports : $sports, gu : $gu},
-	       type : 'post',
-	       success : function(data){
-	    	   
-	       }
-	    })//ajax
-	}) //클릭
+	$test.click(function(){
+		var $sports = $(this).parent().siblings("#abc").text();
+		var $gu = $(this).text();		
+		console.log($sports);
+		console.log($gu);
+		
+		$.ajax({
+			url : 'searchmain.do',
+			data : {sports : $sports, gu : $gu},
+			type : 'post',
+			success : function(data){
+				console.log("search.do로 이동");
+				location.href ="search.do";
+			}
+		})//ajax
+	})//클릭
 })
 </script>
 </head> 
@@ -103,49 +107,53 @@ $(function(){
 							</button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
 								<div class="sub-slide">
-									<ul><h4>당구</h4>
-										<li><a href="#">마포구</a></li><br>										
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
-									</ul>
-								</div>
-								<div class="sub-slide">
-									<ul><h4>배드민턴</h4>
-										<li><a href="search.jsp">마포구</a></li><br>										
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
-									</ul>
-								</div>
-								<div class="sub-slide">
-									<ul><h4>테니스</h4>
-										<li><a href="search.jsp">마포구</a></li><br>
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
-									</ul>
-								</div>
-								<div class="sub-slide">
-									<ul><h4>볼링</h4>
-										<li><a href="search.jsp">마포구</a></li><br>
-										<!-- <li><a href="search.jsp">구로구</a></li><br> -->
+									<ul>
+										<li id="abc">당구<li>
+										<li style="color: black;"><button style="outline: none;opacity: 0.6;background-color:#000000;" >마포구</button><li><br>
 										<li><button>구로구</button><li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
 									</ul>
 								</div>
 								<div class="sub-slide">
-									<ul><h4>탁구</h4>
-										<li><a href="search.jsp">마포구</a></li><br>
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
+									<ul>
+										<li id="abc">배드민턴<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
+									</ul>
+								</div>
+								<div class="sub-slide">
+									<ul>
+										<li id="abc">테니스<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
+									</ul>
+								</div>
+								<div class="sub-slide">
+									<ul>
+										<li id="abc">볼링<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
+									</ul>
+								</div>
+								<div class="sub-slide">
+									<ul>
+										<li id="abc">탁구<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
 									</ul>
 								</div>
 							</ul>
