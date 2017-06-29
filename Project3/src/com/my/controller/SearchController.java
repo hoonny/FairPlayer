@@ -131,6 +131,11 @@ public class SearchController {
 				sports_i = l.get(0);
 				gu_i = l.get(1);
 				
+				//gu목록
+				List<String> list2 = dao.selectBySports(sports_i);
+				System.out.println("구:"+ list2);
+				model.addAttribute("gu_all", list2);
+				
 				//dong목록
 				List<String> list3 = dao.selectByGu(gu_i);
 				System.out.println("동:"+ list3);
