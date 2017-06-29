@@ -151,7 +151,6 @@ public class BoardController {
       String id = list.getEmail();
       String image = list.getImage_url();
       System.out.println(list);
-      System.out.println("-----------------------------");
       System.out.println("no:"+no);
       System.out.println(image);
       
@@ -159,13 +158,13 @@ public class BoardController {
       Customer c = (Customer)session.getAttribute("loginInfo");
       
       if(c != null){
-         email = c.getNickname();
+         email = c.getEmail();
       }
       
       
-
+System.out.println("id : " + id + "email : " + email);
       String msg = "";
-      if ( id .equals(email)){
+      if ( id.equals(email)){
          msg = "1";
       } else  {
          msg = "2";
