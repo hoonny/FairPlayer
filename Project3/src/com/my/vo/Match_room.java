@@ -1,5 +1,9 @@
 package com.my.vo;
 
+import java.util.HashMap;
+
+import org.springframework.ui.Model;
+
 public class Match_room {
 
 	private int room_id;
@@ -11,6 +15,8 @@ public class Match_room {
 	private String owner;
 	private String user;
 	private int count;
+	
+	private static HashMap<Integer, Object> rooms = new HashMap<>();	
 	
 	public String getOwner() {
 		return owner;
@@ -67,6 +73,31 @@ public class Match_room {
 	public void setLevel(String level) {
 		this.level = level;
 	}
+	
+	public void make(int room_id, int count, String owner){
+		Chat_room chatroom = new Chat_room();
+		chatroom.setCount(count);
+		chatroom.setOwner_id(owner);
+		chatroom.setUser_id(null);
+		rooms.put(room_id, chatroom);
+		System.out.println(chatroom);
+	}
+	
+	public void join(int room_id, int count, String user){
+		if(rooms != null){
+			Chat_room chatroom = (Chat_room)rooms.get(room_id);
+			chatroom.setUser_id(user);
+            chatroom.setCount(count+1);
+			rooms.put(room_id, chatroom);
+			System.out.println("join : "+chatroom);
+		}
+	}
+	
+	public HashMap<Integer, Object> getrooms(){
+		return rooms;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Match_room [room_id=" + room_id + ", email=" + email + ", center_id="
