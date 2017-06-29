@@ -1,5 +1,6 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%String contextPath = request.getContextPath(); %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html> 
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
@@ -183,11 +184,38 @@ $(function(){
 					data:{"sport_name":$sport_name, "gu":$gu, "center_name":$center_name, "match_type":$match_type, "level":$level},
 					success: function(responseData){	
     					var data = responseData.trim(); //공백을 없애기위해
-    					if(data == '1'){
+    					if(data == '0'){
     						alert("이미 방이 존재합니다.");
     					} else{
     						location.href="matching.do";
-    						window.open("localhost:8888/Project2/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+    						window.open("http://localhost:8888/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+    					}
+    				} 
+      	});
+      	return false; //기본이벤트(submit핸들러: method=get, action="")가 처리됨
+    });
+});
+
+//-------------------방 입장 -------------------------------------
+$(function(){
+	var $btRoomIn = $("button[name=btn_room_In]");
+	$btRoomIn.click(function(){
+		console.log("방입장하기 클릭");
+		var $room_id = $(this).parent().siblings(".roomno").text();
+
+        console.log("room_id : "+$room_id);
+		var url="roomin.do";		
+		console.log(url);
+      	$.ajax({	url: url,
+					method: 'POST',
+					data:{"room_id":$room_id},
+					success: function(responseData){	
+    					var data = responseData.trim(); //공백을 없애기위해
+    					if(data == '0'){
+    						alert("입장 할 수 없습니다.");
+    					} else{
+    						location.href="matching.do";
+    						window.open("http://localhost:8888/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
     					}
     				} 
       	});
@@ -272,10 +300,7 @@ $(function(){
   <div class="roomtype">${room["match_type"]}</div>
   <div class="roomtime">${room["level"]}</div>
   <div class="roombtn">
-  <button type="submit"
-  onClick="window.open('localhost:8888/Project2/broadcast.html', '채팅방', 'width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes' );">
-    입장
-  </button>
+  <button type="submit" name="btn_room_In">입장</button>
   </div>
 </form>
 </c:forEach>
@@ -338,7 +363,7 @@ $(function(){
       <span><B>실력/수준 : </B></span> &nbsp;&nbsp;
       <div class="btn-group" data-toggle="buttons" id="level">
         <label class="btn btn-primary active">
-          <input type="radio" name="options" id="row" autocomplete="off" value="하">하
+          <input type="radio" name="options" id="row" autocomplete="off" value="하" checked>하
         </label>
         <label class="btn btn-primary">
           <input type="radio" name="options" id="mid" autocomplete="off" value="중">중

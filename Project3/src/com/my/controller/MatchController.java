@@ -1,12 +1,21 @@
 package com.my.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
+import javax.websocket.OnClose;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,18 +25,57 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.dao.MatchDAO;
 import com.my.dao.SearchDAO;
+import com.my.vo.Chat_room;
 import com.my.vo.Customer;
 import com.my.vo.Match_room;
 import com.my.vo.Sports;
 
 @Controller
+@ServerEndpoint("/broadcasting")
 public class MatchController {
+	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
+	private static HashMap<Session, Chat_room> users = new HashMap<>();
+	private static Match_room matchRoom = new Match_room();
+	private static int room_no;
+	private static String email;
 	
 	@Autowired
 	SearchDAO sdao;
 	@Autowired
 	MatchDAO mdao;
+	
+	
 
+	 @OnMessage
+	    public void onMessage(String message, Session session) throws IOException {
+		    //users.keySet();
+	        synchronized(users.keySet()) {
+	            for(Session client : users.keySet()) {
+	                if(!client.equals(session)) {
+	                    client.getBasicRemote().sendText(message);
+	                }
+	            }
+	        }
+	    }
+	    
+	    @OnOpen
+	    public void onOpen(Session session) throws Exception {
+	    	HashMap<Integer, Object> rooms = matchRoom.getrooms();
+			System.out.println("room_no : " + room_no);
+			Chat_room chatRoom = new Chat_room();
+			chatRoom = (Chat_room) rooms.get(room_no);
+			users.put(session,chatRoom);
+			System.out.println(users.get(session)+"접속");
+			//clients.add(session);
+	    }
+	    
+	    @OnClose
+	    public void onClose(Session session) throws IOException {
+	       // clients.remove(session);
+	    	Chat_room cr = users.remove(session);
+	    	System.out.println(cr.getOwner_id()+ "님이 종료하였습니다.");
+	    }
+	    
 	@RequestMapping("/matching.do")
 	public String searchbar(Model model) {		
 		
@@ -67,38 +115,46 @@ public class MatchController {
 	   public String roommake(HttpSession session, Model model,
 			                                      String center_name, String match_type, String level) {
 	      Customer c = (Customer)session.getAttribute("loginInfo");
-	      String email = c.getEmail();
-	      Match_room m = (Match_room)session.getAttribute("roomInfo"); 
+	      email = c.getEmail();
 	    	  
 	      int center_id = 0;
 	      int location_id = 0;
 	      try {  
-	       if((m == null)){
-	    	  model.addAttribute("flagroom","1"); 
-	       } else {
-	    	   String email2 = m.getEmail();
-	    	   if(!(email.equals(email2))){ 
 	  	    	 Sports id_list = mdao.searchid(center_name);
 	  	    	 center_id = id_list.getCenter_id();
 	  	    	 location_id = id_list.getLocation_id();
 	  	    	 System.out.println(":"+ center_id + ":" + location_id );
-	  	    	 Match_room matchRoom = new Match_room();
-	  	    	 matchRoom.setEmail(email);
-	  	    	 matchRoom.setCenter_id(center_id);
-	  	    	 matchRoom.setLocation_id(location_id);
-	  	    	 matchRoom.setMatch_type(match_type);
-	  	    	 matchRoom.setLevel(level);
-	  	    	 mdao.roommake(matchRoom);
-	  	    	 System.out.println(matchRoom);
-	  	    	 session.setAttribute("roomInfo", matchRoom);
-	  	         } else {
-	  	        	 model.addAttribute("roomflag", "1");
-	  	         }  
-	       }
-	      } catch (NamingException e) {
+	  	    	 
+	  	    	 Match_room mr = mdao.selectOwner(email); // Login session을 이용해서 방이 생성됬는지 유무 체크
+	  	    	 
+	  	    	 if(mr == null){
+	  	    		 System.out.println("일단 방이 없으니까 방만들기 수행");
+		  	    	 matchRoom.setEmail(email);
+		  	    	 matchRoom.setCenter_id(center_id);
+		  	    	 matchRoom.setLocation_id(location_id);
+		  	    	 matchRoom.setMatch_type(match_type);
+		  	    	 matchRoom.setLevel(level);
+		  	    	 matchRoom.setOwner(email);
+		  	    	 matchRoom.setCount(1);
+		  	    	 mdao.roommake(matchRoom);
+		  	    	 System.out.println("matchRoom :"+ matchRoom);
+		  	    	 
+		  	    	 Match_room s_room = mdao.selectOwner(email);
+		  	    	 room_no = s_room.getRoom_id();
+		  	    	 System.out.println("selectOwner:"+s_room);
+		  	    	 matchRoom.make(s_room.getRoom_id(), 1, email);
+		  	    	 
+		  	    	 model.addAttribute("msg","1");
+	  	    	 } else {
+	  	    		 if( mr.getOwner().equals(email)){
+	  	    			 model.addAttribute("msg","0");
+	  	    		 } // if end
+	  	    	 } // if end
+	  	    	 
+	  	    } catch (NamingException e) {
 	         e.printStackTrace();
 	      }
-	      String forwardURL = "/matching.do";
+	      String forwardURL = "/result.jsp";
 	      return forwardURL;
 	   }
 
@@ -134,4 +190,16 @@ public class MatchController {
 	      return forwardURL;
 	   }
 
+	@RequestMapping("/roomin.do")
+	   public String roomIn(HttpSession session, Model model,
+			                                      int room_id) throws NamingException {
+	      Customer c = (Customer)session.getAttribute("loginInfo");
+	      email = c.getEmail();
+	      System.out.println("email:::"+email);
+	      matchRoom.join(room_id, 1, email);
+		  model.addAttribute("msg","1");
+		  
+	      String forwardURL = "/result.jsp";
+	      return forwardURL;
+	   }	
 }
