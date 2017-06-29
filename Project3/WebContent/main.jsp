@@ -169,16 +169,16 @@ $(function(){
                         
             <div class="items-wrapper row" style="width: 1300px; margin:  auto; margin-left: 10px">
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 첫번쨰 그림  -->
-                            <img class="figure-image" src="./bootstrap/assets/images/111.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <img class="figure-image" src="./bootstrap/assets/images/main/111.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
                 
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 두번쨰 그림  -->
-                            <img class="figure-image" src="./bootstrap/assets/images/2.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <img class="figure-image" src="./bootstrap/assets/images/main/2.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
                 
                 
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px">
-                            <img class="figure-image" src="./bootstrap/assets/images/3.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <img class="figure-image" src="./bootstrap/assets/images/main/3.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
                 
             </div><!--//items-wrapper-->
