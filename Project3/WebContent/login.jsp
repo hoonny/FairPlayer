@@ -77,7 +77,7 @@
       <article class="container">
       <center>
         <div class="page-header" style="margin-top:100px; margin-bottom:30px;" >
-          <h1 style=" margin: 30px; font-size: 64px" >우리동네   예체능</h1>
+          <h1 style=" margin: 30px; font-size: 64px" >우리동네   예체능<!-- ! --></h1>
         </div>
         <div class="col-md-6 col-md-offset-3">
          <div class="form-group">
