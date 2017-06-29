@@ -2,6 +2,7 @@ package com.my.controller;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -151,7 +152,6 @@ public class BoardController {
       String id = list.getEmail();
       String image = list.getImage_url();
       System.out.println(list);
-      System.out.println("-----------------------------");
       System.out.println("no:"+no);
       System.out.println(image);
       
@@ -159,13 +159,13 @@ public class BoardController {
       Customer c = (Customer)session.getAttribute("loginInfo");
       
       if(c != null){
-         email = c.getNickname();
+         email = c.getEmail();
       }
       
       
-
+System.out.println("id : " + id + "email : " + email);
       String msg = "";
-      if ( id .equals(email)){
+      if ( id.equals(email)){
          msg = "1";
       } else  {
          msg = "2";
@@ -239,10 +239,16 @@ public class BoardController {
    
    @RequestMapping("boardSearch.do")  //글 답글작성하기!!!!
    public String boardSearch(Model model, HttpSession session, String select, String input){
-	   System.out.println(select);
-	   System.out.println(input);
-	   System.out.println("구별 ㅇㅇㅇㅇㅇ");
       List<RepBoard> list;
+      HashMap<String,String> type = new HashMap<>();
+      type.put("type", select);
+      type.put("value", input);
+      int size = 10;
+      double count = dao.getCountbysmt(type);
+      int pageCount = (int) Math.ceil(count/size);
+      
+      model.addAttribute("count",pageCount);
+      
       if(select.equals("닉네임")){
          String nickname = input;
          list = dao.searchByWriter(nickname);

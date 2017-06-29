@@ -79,17 +79,26 @@
 
 
     #divPaging {
-          clear:both; 
-        margin:0 auto; 
+    	text-align : center;
+        clear:both; 
+        margin: auto; 
         width:220px; 
         height:50px;
 }
 
     #divPaging > div {
-        float:left;
-        width: 30px;
-        margin:0 auto;
-        text-align:center;
+        
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        
+}
+   #divPaging > div > table{
+        
+        width: 150px;
+        margin: auto;
+        text-align: center;
+       
 }
 
     #liSearchOption {clear:both;}
@@ -173,10 +182,10 @@ $(function(){
         return false;
         }); 
       
-      $("#divPaging>div>a").click(function(){
+      $(".paging").click(function(){
     	  
     	  var $page = $(this).text();
-    	  
+    	  console.log($page)
     	  $.ajax({
     		  url : 'boardList.do',
     		  data : {page : $page},
@@ -187,14 +196,7 @@ $(function(){
     		  }
     		  
     	  })//ajax
-    	  
-    	  
       })//클릭
-      
-      
-
-      
-      
   });
 
 
@@ -253,11 +255,17 @@ $(function(){
             <br>
                 <div id="divPaging">
                 <%int count = (int)request.getAttribute("count"); %>
-                    <div>◀</div>
-                    <%for (int i = 1 ; i <= count; i++) {%>
-                    	<div><a href = #><%=i %></a></div>
-                    <%} %>
-                    <div>▶</div>
+                    <div>
+                    <table>
+	                    <tr>
+	                    	<th>◀</th>
+	                    <%for (int i = 1 ; i <= count; i++) {%>
+	                    	<td class = "paging"><a href = #><%=i %></a></td>
+	                    <%} %>
+	                    	<th>▶</th>
+	                    </tr>
+                    </table>
+                    </div>
                     
                 </div>
                 <%String log = (String)request.getAttribute("log"); %>

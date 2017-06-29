@@ -1,5 +1,6 @@
 package com.my.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,35 +75,64 @@ public class SearchController {
 			return forwardURL;
 	}
 
-	@RequestMapping("/search.do")
-	public String search(Model model, String sports, String gu, String dong) {
-		System.out.println("스포츠 : " + sports + " 구 : " + gu + " 동 : " + dong);
+	@RequestMapping("/searchmain.do")
+	public String searchmain(Model model, String sports, String gu, HttpSession session) {
+		System.out.println("스포츠 : " + sports + " 구 : " + gu);
 		model.addAttribute("sports", sports);
 		model.addAttribute("gu", gu);
-		model.addAttribute("dong", dong);
+		List<String> list = new ArrayList<>();
+		
+		list.add(sports);
+		list.add(gu);
+		session.setAttribute("sports", list);
+		String forwardURL = "/main.jsp";			
+		return forwardURL;
+	}
+	
+	@RequestMapping("/search.do")
+	public String search(Model model, String sports, String gu, String dong, HttpSession session) {
+		System.out.println("스포츠 : " + sports + " 구 : " + gu + " 동 : " + dong);
+		
 	
 		try {
 			//sport_name목록
 			List<String> list1 = dao.selectSports();
 			System.out.println("종목:"+ list1);
 			model.addAttribute("sport_name_all", list1);
+			String sports_i = null;
+			String gu_i = null;
 			
-			if(gu == null){ //menu에서 들어올시
+			if(sports != null){ //menu에서 들어올시
+				model.addAttribute("sports", sports);
+				model.addAttribute("gu", gu);
+				model.addAttribute("dong", dong);
+				
 				//gu목록
-				String sports_i = "볼링";
+				sports_i = "볼링";
 				List<String> list2 = dao.selectBySports(sports_i);
 				System.out.println("구:"+ list2);
 				model.addAttribute("gu_all", list2);
 				
 				//dong목록
-				String gu_i = "강남구";
+				gu_i = "강남구";
 				List<String> list3 = dao.selectByGu(gu_i);
 				System.out.println("동:"+ list3);
 				model.addAttribute("dong_all", list3);
 				
 			} else{ // main바에서 들어올시
+				List<String> l = (List<String>) session.getAttribute("sports");
+				System.out.println("첫번째 값:"+l.get(0));
+				System.out.println("두번째 값:"+l.get(1));
+				
+				model.addAttribute("sports", l.get(0));
+				model.addAttribute("gu", l.get(1));
+				model.addAttribute("dong", dong);
+
+				sports_i = l.get(0);
+				gu_i = l.get(1);
+				
 				//dong목록
-				List<String> list3 = dao.selectByGu(gu);
+				List<String> list3 = dao.selectByGu(gu_i);
 				System.out.println("동:"+ list3);
 				model.addAttribute("dong_all", list3);
 			}

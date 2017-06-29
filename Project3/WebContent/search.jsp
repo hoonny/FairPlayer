@@ -145,7 +145,7 @@
 
 
 <!-- **************************종복/구/동 선택창************************* -->  
-<div class="form-group select_div" style="margin:auto;">
+<div class="form-group select_div" style="margin:auto;padding-bottom: 20px;">
 <form class="form-inline" style="margin:auto; width:auto; border:2px solid; padding:10px; border-color: #7f7f7f; border-radius: 10px;">
   <img src="./bootstrap/assets/images/icon_select.png" alt="image" style="width:40px; height:40px; vertical-align:middle;">
   <div class="form-group">&nbsp;&nbsp;  
@@ -191,6 +191,9 @@
   </div>
 </form>
 </div>
+
+
+<hr>
 
 <!-- **************************센터목록 리스트************************* -->
 

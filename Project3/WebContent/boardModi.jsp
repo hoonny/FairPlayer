@@ -59,9 +59,9 @@ $(function(){
 <form method="post" enctype="multipart/form-data">
 <div class="container">
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="background-color: white;">
     <thead>
-        <caption> 글 수정 </caption>
+        <h3 style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf"> 글 수정 </h3>
     </thead>
     
     <tbody>

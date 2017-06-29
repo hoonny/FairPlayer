@@ -43,109 +43,119 @@ ul{
 a{
   color:#ffffff;
 }
+#abc {
+	font-style: normal;
+	font-size: 16px;
+	color: orange;
+}
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
-
 	var $test = $(".sub-slide>ul>li>button");
-	$test.click(function(){    
-	    var $gu = $(this).text();    
-	    var $sports = $(this).parent().siblings("h4").text();
-	    //alert("1");
-	    console.log($gu);
-	    //alert("2");
-	    console.log($sports);
-	    $.ajax({
-	       url : 'searchmain.do',
-	       data : {sports : $sports, gu : $gu},
-	       type : 'post',
-	       success : function(data){
-	    	   
-	       }
-	    })//ajax
-	}) //클릭
+	$test.click(function(){
+		var $sports = $(this).parent().siblings("#abc").text();
+		var $gu = $(this).text();		
+		console.log($sports);
+		console.log($gu);
+		
+		$.ajax({
+			url : 'searchmain.do',
+			data : {sports : $sports, gu : $gu},
+			type : 'post',
+			success : function(data){
+				console.log("search.do로 이동");
+				location.href ="search.do";
+			}
+		})//ajax
+	})//클릭
 })
 </script>
 </head> 
 
-<body>
+<body  style="background-color: #F9FFFF">
 <header>
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
 <article>			
-    <div id="hero" class="hero-section">
+    <div id="hero" class="hero-section" style="height: 350px;">
         
-        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-ride="" data-interval="10000">
+        <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-ride="" data-interval="10000" style="height: 450px">
             
-            <div class="figure-holder-wrapper">
+            <!-- <div class="figure-holder-wrapper" style="height: 450px">
               <div class="container">
                   <div class="row">
-                      <div class="figure-holder">
+                      <div class="figure-holder" style="height: 450px">
 					  
-                        </div><!--//figure-holder-->
-                  </div><!--//row-->
-              </div><!--//container-->
-          </div><!--//figure-holder-wrapper-->
+                        </div>//figure-holder
+                  </div>//row
+              </div>//container
+          </div>//figure-holder-wrapper -->
             
          
          <!-- Wrapper for slides -->
          <div class="carousel-inner">
              
-            <div class="item item-1 active">
-               <div class="item-content container">
-                   <div class="item-content-inner">
-			
-						<div class="dropdown" style="height:50px; margin-top:140px;">
+            <div class="item item-1 active" style="background-image: url('./bootstrap/assets/images/234.jpg'); height: 450px">
+               <div class="item-content container" style="height: 450px">
+                   <div class="item-content-inner" style="height: 450px; padding-top: 95px">
+						<h1 style=" font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; margin: 0px; margin-top: 70px; width: 350px; margin: auto;">"스포츠를 디자인하다"</h1>
+						<h3 style=" font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; margin: 0px; margin-top: 70px; width: 330px; margin: auto; color: white;">실시간매칭은=우리동네 예체능</h3>
+						
+						<div class="dropdown" style="height:50px; margin-top: 20px">
 							<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:center">
 									당신이 원하는 지역을 찾아보세요!!
 							</button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
 								<div class="sub-slide">
-									<ul><h4>당구</h4>
-										<li><a href="#">마포구</a></li><br>										
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
-									</ul>
-								</div>
-								<div class="sub-slide">
-									<ul><h4>배드민턴</h4>
-										<li><a href="search.jsp">마포구</a></li><br>										
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
-									</ul>
-								</div>
-								<div class="sub-slide">
-									<ul><h4>테니스</h4>
-										<li><a href="search.jsp">마포구</a></li><br>
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
-									</ul>
-								</div>
-								<div class="sub-slide">
-									<ul><h4>볼링</h4>
-										<li><a href="search.jsp">마포구</a></li><br>
-										<!-- <li><a href="search.jsp">구로구</a></li><br> -->
+									<ul>
+										<li id="abc">당구<li>
+										<li style="color: black;"><button style="outline: none;opacity: 0.6;background-color:#000000;" >마포구</button><li><br>
 										<li><button>구로구</button><li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
 									</ul>
 								</div>
 								<div class="sub-slide">
-									<ul><h4>탁구</h4>
-										<li><a href="search.jsp">마포구</a></li><br>
-										<li><a href="search.jsp">구로구</a></li><br>
-										<li><a href="search.jsp">강남구</a></li><br>
-										<li><a href="search.jsp">강서구</a></li><br>
-										<li><a href="search.jsp">중구 </a></li>
+									<ul>
+										<li id="abc">배드민턴<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
+									</ul>
+								</div>
+								<div class="sub-slide">
+									<ul>
+										<li id="abc">테니스<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
+									</ul>
+								</div>
+								<div class="sub-slide">
+									<ul>
+										<li id="abc">볼링<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
+									</ul>
+								</div>
+								<div class="sub-slide">
+									<ul>
+										<li id="abc">탁구<li>
+										<li><button>마포구</button><li><br>
+										<li><button>구로구</button><li><br>
+										<li><button>강남구</button><li><br>
+										<li><button>강서구</button><li><br>
+										<li><button>중구</button><li><br>
 									</ul>
 								</div>
 							</ul>
@@ -167,28 +177,20 @@ $(function(){
          <h3 style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf">인기 장소는 바로 여기!</h3>
             <h2 class="section-title" style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf" >Hot Service</h2>
                         
-            <div class="items-wrapper row">
-                <div class="item col-sm-4 col-xs-12">
-                    <div class="item-inner">
-                        <div class="figure-holder">
-                            <img class="figure-image" src="./bootstrap/assets/images/1.jpg" alt="image">
-                        </div><!--//figure-holder-->                  
-                    </div><!--//item-inner-->
+            <div class="items-wrapper row" style="width: 1300px; margin:  auto; margin-left: 10px">
+                <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 첫번쨰 그림  -->
+                            <img class="figure-image" src="./bootstrap/assets/images/main/111.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
-                <div class="item col-sm-4 col-xs-12">
-                    <div class="item-inner">
-                        <div class="figure-holder">
-                            <img class="figure-image" src="./bootstrap/assets/images/2.jpg" alt="image">
-                        </div><!--//figure-holder-->
-                    </div><!--//item-inner-->
+                
+                <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 두번쨰 그림  -->
+                            <img class="figure-image" src="./bootstrap/assets/images/main/2.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
-                <div class="item col-sm-4 col-xs-12">
-                    <div class="item-inner">
-                        <div class="figure-holder">
-                            <img class="figure-image" src="./bootstrap/assets/images/3.jpg" alt="image">
-                        </div><!--//figure-holder-->                      
-                    </div><!--//item-inner-->
+                
+                
+                <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px">
+                            <img class="figure-image" src="./bootstrap/assets/images/main/3.jpg" alt="image" style="width: 100%; height: 100%;">
                 </div><!--//item-->
+                
             </div><!--//items-wrapper-->
         </div><!--//container-->
         </div>
