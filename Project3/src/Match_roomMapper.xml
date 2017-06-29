@@ -41,8 +41,12 @@
 		select room_id, center_name, gu, dong, adress, match_type, level, owner, user, count
 		from match_room m join location l on m.location_id = l.location_id
 						  join sports s on m.center_id = s.center_id
-		where m.location_id = #{location_id}
-						  
+		where m.location_id = #{location_id}						  
+	</select>
+	
+	<!-- 방 목록 중 owner아이디가 있는가 -->
+	<select id="selectOwner" parameterType="string" resultType="Match_room">
+		select * from match_room where email = #{email}
 	</select>
 	
 	

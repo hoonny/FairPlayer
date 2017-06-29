@@ -37,8 +37,10 @@ public class BoardController {
       
       //String savePath = "C:\\Users\\ywj\\git\\KITRI-project\\WebContent\\up_image";
       String savePath =  rq.getSession().getServletContext().getRealPath("up_image");
+      System.out.println(savePath);
       int maxPostSize = 1024*1024*15;
       
+      System.out.println("request getContentType : " + rq.getContentType());
       
       RepBoard board = new RepBoard();
       try {
@@ -50,7 +52,6 @@ public class BoardController {
 		System.out.println(subject+":"+content+":"+password);
 		
 		Enumeration<String> files=multi.getFileNames();
-		System.out.println(files);
 		String file=files.nextElement();
 		
 		
