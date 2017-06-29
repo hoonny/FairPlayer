@@ -1,5 +1,6 @@
 package com.my.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -91,4 +92,7 @@ public class BoardDAOOracle {	//DB와 일하는 메서드들을 모아둠.
 		return session.selectOne("RepBoardMapper.getCount");
 	}
 
+	public int getCountbysmt(HashMap<String,String> map){
+		return session.selectOne("RepBoardMapper.countbysmt", map);
+	}
 }

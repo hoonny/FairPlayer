@@ -89,6 +89,7 @@
 				JOIN customers c ON hi.email = c.email
                 WHERE nickname LIKE '%${value}%'
 				ORDER BY grp DESC, level ASC
+				LIMIT 10
    </select>   
    
    <!--  제목 검색 -->
@@ -108,6 +109,7 @@
 				JOIN customers c ON hi.email = c.email
                 WHERE subject LIKE '%${value}%'
 				ORDER BY grp DESC, level ASC
+				LIMIT 10
    </select>
    
    <!--  내용 검색    -->
@@ -127,6 +129,7 @@
 				JOIN customers c ON hi.email = c.email
                 WHERE content LIKE '%${value}%'
 				ORDER BY grp DESC, level ASC	
+				LIMIT 10
    </select>
    
    <!--  총 글 갯수 -->
@@ -134,7 +137,23 @@
    		select count(*) from repboard
    </select>
    
+   <!--  검색 갯수  -->
+   <select id = 'countbysmt' parameterType="hashmap" resultType="int">
+   select count(*) from repboard b JOIN customers c ON b.email = c.email
+   <where>
+   <if test = "type == '제목'">
+   	subject Like '%${value}%'
+   </if>
+   <if test = "type == '닉네임'">
+   	nickname Like '%${value}%'
+   </if>
+   <if test = "type == '내용'">
+   	content Like '%${value}%'
+   </if>
    
+   </where>
+   
+   </select>
    
    
    
