@@ -50,6 +50,10 @@ $(function(){
 })//끝
 </script>
 <style>
+
+body{
+background-color : #F9FFFF;
+}
 table {
  
 width : 80%;
