@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Like_listMapper">
+
+	<select id = 'list' parameterType="string" resultType="hashmap">
+		select * from like_list b join sports s on b.center_id = s.center_id
+		join location l on s.location_id = l.location_id where email = #{email}	
+	</select>
+	
+	<insert id = "insert" parameterType="Like_list">
+		insert into like_list(email,center_id) values(#{email},#{center_id})
+	</insert>
+	
+	<select id ="count" parameterType = "String" resultType = "int">
+		select count(*) from like_list where email = #{email}
+	</select>
+	
+	<select id ="chk" parameterType = "Like_list" resultType = "Like_list">
+		select * from like_list where center_id = #{center_id} and email = #{email}
+	</select>
+	
+	<delete id = "delete" parameterType = "int">
+		delete from like_list where list_id = #{list_id}
+	</delete>
+
+</mapper>
+

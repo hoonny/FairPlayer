@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LocationMapper">
+<resultMap type="Location" id="LocationMap">
+<id column="location_id" property = "location_id" />
+<id column="gu" property = "gu" />
+<id column="dong" property = "dong" />
+</resultMap>
+
+<select id = "selectByLocationID" parameterType="int" resultType="Location">
+select * from location where location_id = #{location_id}
+</select>
+
+<select id = "selectGu" resultType = "String">
+select distinct gu from location
+</select>
+
+</mapper>
+

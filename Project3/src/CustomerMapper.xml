@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CustomerMapper">
+	<!-- ID(email)로 고객찾기 -->	
+	<select id = "selectById" parameterType="string" resultType="Customer">
+	select * from customers where email = #{email}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="signup" parameterType="Customer">
+	insert into customers(email,customer_name,nickname,password,call_no,status) 
+	values(#{email},#{customer_name},#{nickname},#{password},#{call_no},#{status})
+	</insert>	
+	
+	</mapper>
+

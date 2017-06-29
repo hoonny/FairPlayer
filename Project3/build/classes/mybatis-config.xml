@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<properties resource = "config.properties">
+<property name = "user" value = "pro1"></property>
+</properties>
+
+<typeAliases>
+  <typeAlias alias="Location" type="com.my.vo.Location"/>
+  <typeAlias alias="Customer" type="com.my.vo.Customer"/>
+  <typeAlias alias="Sports" type="com.my.vo.Sports"/>
+  <typeAlias alias="RepBoard" type="com.my.vo.RepBoard"/>
+  <typeAlias alias="Match_room" type="com.my.vo.Match_room"/>
+  <typeAlias alias="Like_list" type="com.my.vo.Like_list"/>
+  <typeAlias alias="Paging" type="com.my.vo.Paging"/>
+</typeAliases>
+
+<!--   <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="UNPOOLED">
+        <property name="driver" value="${oracleDriver}"/>
+        <property name="url" value="${oracleURL}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments> -->
+  <mappers>
+    <mapper resource="searchMapper.xml"/>
+    <mapper resource="CustomerMapper.xml"/>
+    <mapper resource="LocationMapper.xml"/>
+    <mapper resource="RepBoardMapper.xml"/>
+    <mapper resource="Match_roomMapper.xml"/>
+    <mapper resource="Like_listMapper.xml"/>
+  </mappers>
+</configuration>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchMapper">
+<resultMap type="Location" id="LocationMap">
+<id column="location_id" property = "location_id" />
+<id column="gu" property = "gu" />
+<id column="dong" property = "dong" />
+</resultMap>
+	
+	<!-- 스포츠 이름 전체 출력   -->
+	<select id = "selectSports" resultType="string">
+	select distinct sport_name from sports
+	</select>
+	
+	<!-- id에 해당하는 스포츠 전체 출력 -->
+	<select id = "selectById" parameterType="int" resultType="Sports">
+		select * from sports where center_id = #{center_id}
+	</select>
+	
+	<!-- 스포츠 이름에 해당하는 "구" 불러오기 -->
+	<select id = "selectBySports" parameterType = "string" resultType="String">
+		select distinct gu from sports s join location l on s.location_id = l.location_id where sport_name = #{sport_name} order by gu
+	</select>
+	
+	<!--  "구"에 해당하는 "동" 불러오기 -->
+	<select id = "selectByGu" parameterType="String" resultType="String">
+		select distinct dong from location where gu = #{gu} 
+	</select>
+	
+	<!--  스포츠이름, 구, 둥으로 검색하기 -->
+	<select id = "search" parameterType = "hashmap" resultType = "hashmap">
+	select * from sports s join location l on s.location_id = l.location_id 
+	<where> 
+	<if test  =  "gu == null and dong ==null">
+		 sport_name = #{sport_name}
+	</if> 
+	<if test = "gu != null and dong == null">
+		 sport_name = #{sport_name} and gu = #{gu}
+	</if>
+	<if test = "gu != null and dong != null">
+		 sport_name = #{sport_name} and gu = #{gu} and dong = #{dong}
+	</if>
+	</where>
+	</select> 
+</mapper>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Match_roomMapper">
+
+	<!-- 스포츠 이름 전체 출력   -->
+	<select id = "selectSports" resultType="string">
+	select distinct sport_name from sports
+	</select>
+
+	<!-- 스포츠 이름에 해당하는 "구" 불러오기 -->
+	<select id = "selectBySports" parameterType = "string" resultType="String">
+		select distinct gu from sports s join location l on s.location_id = l.location_id where sport_name = #{sport_name} order by gu
+	</select>
+	
+	<!--  스포츠, 구에 해당하는 매칭가능지역 찾기 -->
+	<select id = "findplace" parameterType = "hashmap" resultType = "String">
+		select center_name from sports s join location l on s.location_id = l.location_id 
+		where flag = 1 and sport_name = #{sport_name} and gu = #{gu}
+	</select>
+
+	<!-- 방 만들 때 해당하는 지점의 center_id와 location_id 불러오기 -->
+	<select id = "getInformation" parameterType="String" resultType="Sports">
+		select * from sports where center_name = #{center_name}
+	</select>
+	
+	<!--  방 생성 -->
+	<insert id = "make" parameterType="Match_room">
+	insert into match_room(email,center_id,location_id, match_type, level, owner, count) values(#{email},#{center_id},#{location_id},#{match_type},#{level},#{owner},#{count})
+	</insert>
+	
+	<!-- 스포츠, "구"로 location_id뽑기 -->
+	<select id= "getLocation_id" parameterType="hashmap" resultType="int">
+		select distinct s.location_id from sports s join location l on s.location_id = l.location_id
+		where sport_name = #{sport_name} and gu = #{gu} and flag = 1
+	</select> 
+	
+	<!--  방 목록  -->
+	 <select id = "list" parameterType="int" resultType="hashmap" >
+		select room_id, center_name, gu, dong, adress, match_type, level, owner, user, count
+		from match_room m join location l on m.location_id = l.location_id
+						  join sports s on m.center_id = s.center_id
+		where m.location_id = #{location_id}
+						  
+	</select>
+	
+	
+
+</mapper>
+

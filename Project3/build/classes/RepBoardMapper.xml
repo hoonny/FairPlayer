@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RepBoardMapper">
+
+   <!-- 글목록 불러오기 -->
+   <select id = 'List' parameterType="Paging" resultType = "RepBoard">
+     SELECT  CONCAT(REPEAT('    ', level - 1), CAST(hi.repboard_no AS CHAR)) AS repboard_no, parent_no,subject, content, nickname, date_format(date,'%Y-%m-%d %H:%i:%S') date, views,level
+		FROM    (
+					SELECT  hierarchy_connect_by_parent_eq_prior_id(repboard_no) AS repboard_no, @level AS level
+					FROM    (
+								SELECT  @start_with := 0,
+								@id := @start_with,
+								@level := 0
+							) vars, repboard
+					WHERE   @id IS NOT NULL
+				) ho
+				JOIN    repboard hi
+				ON      hi.repboard_no = ho.repboard_no
+				JOIN customers c ON hi.email = c.email
+				ORDER BY grp DESC, level ASC
+				LIMIT #{stand} ,#{size}
+
+   </select>
+
+   <!-- 글쓰기-->
+   <insert id = 'insert' parameterType="hashmap">
+      insert into repboard(subject,content, email,password,image_url) values(#{subject},#{content},#{email},#{password},#{image_url})
+   </insert>
+
+	<!-- 방금 쓴 글 번호가져오기 -->
+	<select id = 'getrepboard_no' parameterType="String" resultType="int">
+		select max(repboard_no) from repboard where email = #{email}
+	</select>
+	
+	<!-- grp에 내 글번호 설정 -->
+	<update id = 'setgrp' parameterType="int">
+		update repboard set grp = #{repboard_no} where repboard_no = #{repboard_no}
+	</update>
+	
+   <!-- 답글 달기 -->
+   <insert id = 'reply' parameterType="RepBoard">
+      insert into repboard(parent_no, subject,content, email,password,image_url,grp) 
+      values(#{parent_no}, #{subject},#{content},#{email},#{password},null,#{parent_no})
+   </insert>
+   
+   <!--  글 내용보기 -->
+   <select id = 'content' parameterType="int" resultType = "RepBoard">
+      select repboard_no, subject, content, email, image_url, date_format(date,'%Y-%m-%d %H:%i:%S') date 
+      from repboard where repboard_no = #{repboard_no}
+   </select>   
+   
+   <!--  삭제, 수정을 위한 본인 확인 -->
+   <select id = 'idcheck' parameterType="int" resultType="String">
+      select email from repboard where repboard_no = #{repboard_no}
+   </select>
+   
+   <!-- 글 삭제 / 본인이 작성한 글만 삭제 가능 -->
+   <delete id = 'delete' parameterType="int">
+      <!-- delete from repboard where (email = #{email} and repboard_no = #{repboard_no}) or parent_no = #{repboard_no} -->
+      delete from repboard where repboard_no = #{repboard_no} or parent_no = #{repboard_no}
+   </delete>
+   
+   <!-- 글 수정 / 본인이 작성한 글만 수정 가능 / 수정가능목록 : 제목 , 글  -->
+   <update id = 'update' parameterType="RepBoard" >
+      update repboard set subject = #{subject}, content = #{content} where repboard_no = #{repboard_no}
+   </update>
+   
+   <!-- 조회수 증가 -->
+   <update id = 'viewsup' parameterType="int">
+      update repboard set views = (views + 1) where repboard_no = #{repboard_no}
+   </update>
+   
+   <!-- 글쓴이 검색 -->
+   <select id = 'searchByWriter' parameterType="string" resultType ="RepBoard" >
+   	  SELECT  CONCAT(REPEAT('    ', level - 1), CAST(hi.repboard_no AS CHAR)) AS repboard_no, parent_no,grp,subject, content, nickname, date_format(date,'%Y-%m-%d %H:%i:%S') date, views,level
+		FROM    (
+					SELECT  hierarchy_connect_by_parent_eq_prior_id(repboard_no) AS repboard_no, @level AS level
+					FROM    (
+								SELECT  @start_with := 0,
+								@id := @start_with,
+								@level := 0
+							) vars, repboard
+					WHERE   @id IS NOT NULL
+				) ho
+				JOIN    repboard hi
+				ON      hi.repboard_no = ho.repboard_no
+				JOIN customers c ON hi.email = c.email
+                WHERE nickname LIKE '%${value}%'
+				ORDER BY grp DESC, level ASC
+   </select>   
+   
+   <!--  제목 검색 -->
+   <select id = 'searchBySubject' parameterType="String" resultType="RepBoard">
+   	  SELECT  CONCAT(REPEAT('    ', level - 1), CAST(hi.repboard_no AS CHAR)) AS repboard_no, parent_no,grp,subject, content, nickname, date_format(date,'%Y-%m-%d %H:%i:%S') date, views,level
+		FROM    (
+					SELECT  hierarchy_connect_by_parent_eq_prior_id(repboard_no) AS repboard_no, @level AS level
+					FROM    (
+								SELECT  @start_with := 0,
+								@id := @start_with,
+								@level := 0
+							) vars, repboard
+					WHERE   @id IS NOT NULL
+				) ho
+				JOIN    repboard hi
+				ON      hi.repboard_no = ho.repboard_no
+				JOIN customers c ON hi.email = c.email
+                WHERE subject LIKE '%${value}%'
+				ORDER BY grp DESC, level ASC
+   </select>
+   
+   <!--  내용 검색    -->
+   <select id = 'searchByContent' parameterType="String" resultType="RepBoard">
+   	  SELECT  CONCAT(REPEAT('    ', level - 1), CAST(hi.repboard_no AS CHAR)) AS repboard_no, parent_no,grp,subject, content, nickname, date_format(date,'%Y-%m-%d %H:%i:%S') date, views,level
+		FROM    (
+					SELECT  hierarchy_connect_by_parent_eq_prior_id(repboard_no) AS repboard_no, @level AS level
+					FROM    (
+								SELECT  @start_with := 0,
+								@id := @start_with,
+								@level := 0
+							) vars, repboard
+					WHERE   @id IS NOT NULL
+				) ho
+				JOIN    repboard hi
+				ON      hi.repboard_no = ho.repboard_no
+				JOIN customers c ON hi.email = c.email
+                WHERE content LIKE '%${value}%'
+				ORDER BY grp DESC, level ASC	
+   </select>
+   
+   <!--  총 글 갯수 -->
+   <select id = 'getCount' resultType="int">
+   		select count(*) from repboard
+   </select>
+   
+   
+   
+   
+   
+   
+
+
+</mapper>

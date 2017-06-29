@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>우리동네예체능 채팅방</title>
+        <style>
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #edeff2;
+  font-family: "Calibri", "Roboto", sans-serif;
+}
+
+.chat_window {
+  position: absolute;
+  width: calc(100% - 20px);
+  max-width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  background-color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.top_menu {
+  background-color: #fff;
+  width: 100%;
+  padding: 20px 0 15px;
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+}
+.top_menu .buttons {
+  margin: 3px 0 0 20px;
+  position: absolute;
+}
+.top_menu .buttons .button {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+}
+.top_menu .buttons .button.close {
+  background-color: #f5886e;
+}
+.top_menu .buttons .button.minimize {
+  background-color: #fdbf68;
+}
+.top_menu .buttons .button.maximize {
+  background-color: #a3d063;
+}
+.top_menu .title {
+  text-align: center;
+  color: #bcbdc0;
+  font-size: 20px;
+}
+
+.messages {
+  position: relative;
+  list-style: none;
+  padding: 20px 10px 0 10px;
+  margin: 0;
+  height: 347px;
+  overflow: scroll;
+}
+.messages .message {
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+.messages .message.left .avatar {
+  background-color: #f5886e;
+  float: left;
+}
+.messages .message.left .text_wrapper {
+  background-color: #ffe6cb;
+  margin-left: 20px;
+}
+.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+  right: 100%;
+  border-right-color: #ffe6cb;
+}
+.messages .message.left .text {
+  color: #c48843;
+}
+.messages .message.right .avatar {
+  background-color: #fdbf68;
+  float: right;
+}
+.messages .message.right .text_wrapper {
+  background-color: #c7eafc;
+  margin-right: 20px;
+  float: right;
+}
+.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+  left: 100%;
+  border-left-color: #c7eafc;
+}
+.messages .message.right .text {
+  color: #45829b;
+}
+.messages .message.appeared {
+  opacity: 1;
+}
+.messages .message .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.messages .message .text_wrapper {
+  display: inline-block;
+  padding: 20px;
+  border-radius: 6px;
+  width: calc(100% - 85px);
+  min-width: 100px;
+  position: relative;
+}
+.messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+  top: 18px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.messages .message .text_wrapper::after {
+  border-width: 13px;
+  margin-top: 0px;
+}
+.messages .message .text_wrapper::before {
+  border-width: 15px;
+  margin-top: -2px;
+}
+.messages .message .text_wrapper .text {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.bottom_wrapper {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 20px;
+  position: absolute;
+  bottom: 0;
+}
+.bottom_wrapper .message_input_wrapper {
+  display: inline-block;
+  height: 50px;
+  border-radius: 25px;
+  border: 1px solid #bcbdc0;
+  width: calc(100% - 160px);
+  position: relative;
+  padding: 0 20px;
+}
+.bottom_wrapper .message_input_wrapper .message_input {
+  border: none;
+  height: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 40px);
+  position: absolute;
+  outline-width: 0;
+  color: gray;
+}
+.bottom_wrapper .send_message {
+  width: 140px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50px;
+  background-color: #a3d063;
+  border: 2px solid #a3d063;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  text-align: center;
+  float: right;
+}
+.bottom_wrapper .send_message:hover {
+  color: #a3d063;
+  background-color: #fff;
+}
+.bottom_wrapper .send_message .text {
+  font-size: 18px;
+  font-weight: 300;
+  display: inline-block;
+  line-height: 48px;
+}
+.my_tle{
+  width:80%;
+  height:50px;
+  line-height:50px;
+  margin:5px;
+  float:right;
+}
+.my_title{
+  background-color:#FFE641;
+  width:50px;
+  height:50px;
+  line-height:50px;
+  font-size:20px;
+  font-weight:bold;
+  color:#000000;
+  text-align:center;
+  -webkit-border-radius:100px;
+  -moz-border-radius:100px;
+  float:right;
+}
+.my_message {
+  background-color:#FFE641;
+  height:50px;
+  line-height:50px;
+  width:80%;
+  padding-left:5px;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 15px;
+  font-weight:bold;
+  float:right;
+}
+.you_tle{
+  width:80%;
+  height:50px;
+  line-height:50px;
+  margin:5px;
+  float:left;
+}
+.you_title{
+  background-color:#dcdcdc;
+  width:50px;
+  height:50px;
+  line-height:50px;
+  font-size:20px;
+  font-weight:bold;
+  color:#000000;
+  text-align:center;
+  -webkit-border-radius:100px;
+  -moz-border-radius:100px;
+  float:left;
+}
+.you_message {
+  background-color:#dcdcdc;
+  height:50px;
+  line-height:50px;
+  width:80%;
+  padding-left:5px;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 15px;
+  font-weight:bold;
+  float:left;
+}
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+    
+    <div class="chat_window">
+    <div class="top_menu">
+        <div class="buttons"><div class="button close">
+            
+        </div><div class="button minimize">
+            
+        </div><div class="button maximize">
+            
+        </div></div><div class="title">우리동네예체능 채팅방</div>
+        </div>
+        
+        <ul class="messages" id="messageWindow">
+
+
+          </ul>
+        
+        <div class="bottom_wrapper clearfix">
+            <div class="message_input_wrapper">
+                <input class="message_input" id="inputMessage" type="text" onkeypress="if( event.keyCode==13 ){send();}"
+                       placeholder="메시지를 입력하세요." />
+                </div>
+                <div class="send_message" onclick="send()"><div class="icon">
+                    
+                </div>
+                <div class="text">전송</div>
+                </div>
+                </div>
+                </div>
+
+    
+    
+</body>
+    <script type="text/javascript">
+        var textarea = document.getElementById("messageWindow");
+        var webSocket = new WebSocket('ws://localhost:8888/Project2/broadcasting');
+        var inputMessage = document.getElementById('inputMessage');
+    webSocket.onerror = function(event) {
+      onError(event);
+    };
+    webSocket.onopen = function(event) {
+      onOpen(event);
+    };
+    webSocket.onmessage = function(event) {
+      onMessage(event);
+    };
+    function onMessage(event) {
+        var html = '<div class="you_tle">';
+        html += '<div class="you_title">YOU</div>';
+        html += '<div class="you_message">'
+       	html += event.data+'</div></div>';
+        document.getElementById("messageWindow").innerHTML += html;
+        var objDiv = document.getElementById("messageWindow");
+    	objDiv.scrollTop = objDiv.scrollHeight;
+    	QApplication:alert(this); 
+    }
+    function onOpen(event) {
+        var html = '<span style="width:100%; height:20px; text-align:center;">방에 입장하셨습니다.<span>';
+        document.getElementById("messageWindow").innerHTML += html;
+    }
+    function onError(event) {
+      alert(event.data);
+    }
+    function send() {
+    	if(inputMessage.value.length>0){
+    		var html = '<div class="my_tle"><div class="my_title">ME</div>';
+            html += '<div class="my_message">'
+           	html += inputMessage.value+'</div></div>';
+            document.getElementById("messageWindow").innerHTML += html;
+            webSocket.send(inputMessage.value);
+            inputMessage.value = "";
+            var objDiv = document.getElementById("messageWindow");
+        	objDiv.scrollTop = objDiv.scrollHeight;
+    	}
+    }
+  </script>
+</html>
