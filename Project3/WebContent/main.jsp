@@ -100,8 +100,8 @@ $(function(){
             <div class="item item-1 active" style="background-image: url('./bootstrap/assets/images/234.jpg'); height: 450px">
                <div class="item-content container" style="height: 450px">
                    <div class="item-content-inner" style="height: 450px; padding-top: 95px">
-						<h2 style=" font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; margin: 0px; margin-top: 70px; width: 300px; margin: auto;">"스포츠를 디자인하다"</h2>
-						<h4 style=" font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; margin: 0px; margin-top: 70px; width: 250px; margin: auto; color: white;">실시간매칭은=우리동네 예체능</h4>
+						<h1 style=" font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; margin: 0px; margin-top: 70px; width: 350px; margin: auto;">"스포츠를 디자인하다"</h1>
+						<h3 style=" font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; margin: 0px; margin-top: 70px; width: 330px; margin: auto; color: white;">실시간매칭은=우리동네 예체능</h3>
 						
 						<div class="dropdown" style="height:50px; margin-top: 20px">
 							<button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:center">
