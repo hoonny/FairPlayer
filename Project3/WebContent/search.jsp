@@ -111,7 +111,7 @@
 		
 		/********************예약버튼*************************/
 		function reserve(booking_site) {
-			alert(booking_site);
+			//alert(booking_site);
 			var str = booking_site;
 			var res = str.split(",");
 			var $booking = res[0];
