@@ -25,7 +25,7 @@ public class SearchController {
 	SearchDAO dao;
 	@Autowired
 	Like_listDAO ldao;
-	
+	//
 	@RequestMapping("/searchdetail.do")
 	public String searchdetail(HttpSession session, String sport_name, String gu, String dong, Model model) {
 			System.out.println(sport_name +";" +gu +";" +dong);			
