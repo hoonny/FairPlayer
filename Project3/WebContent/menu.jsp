@@ -52,6 +52,7 @@ $(function(){
        <c:when test="${ empty sessionScope.loginInfo }">
        <li><a href='search.do'>운동검색</a></li>
        <li><a href='matching.do'>실시간매칭</a></li>
+       <li><a href='boardList.do'>신고게시판</a></li>
        <li style="float:right;"><a href='signup.jsp'>회원가입</a></li>
        <li style="float:right;"><a href='login.jsp'>로그인</a></li>
        </c:when>

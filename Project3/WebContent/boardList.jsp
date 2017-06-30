@@ -79,17 +79,26 @@
 
 
     #divPaging {
-          clear:both; 
-        margin:0 auto; 
+    	text-align : center;
+        clear:both; 
+        margin: auto; 
         width:220px; 
         height:50px;
 }
 
     #divPaging > div {
-        float:left;
-        width: 30px;
-        margin:0 auto;
-        text-align:center;
+        
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        
+}
+   #divPaging > div > table{
+        
+        width: 150px;
+        margin: auto;
+        text-align: center;
+       
 }
 
     #liSearchOption {clear:both;}
@@ -173,10 +182,10 @@ $(function(){
         return false;
         }); 
       
-      $("#divPaging>div>a").click(function(){
+      $(".paging").click(function(){
     	  
     	  var $page = $(this).text();
-    	  
+    	  console.log($page)
     	  $.ajax({
     		  url : 'boardList.do',
     		  data : {page : $page},
@@ -187,14 +196,7 @@ $(function(){
     		  }
     		  
     	  })//ajax
-    	  
-    	  
       })//클릭
-      
-      
-
-      
-      
   });
 
 
@@ -207,17 +209,22 @@ $(function(){
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
    <br><br><br>
-   <article style="width: 700px; margin: auto;">
+   <article style="width: 700px; margin-left: ">
    <form method="post">
    <div id="mainWrapper">
+        
+        
         <ul>
             <!-- 게시판 제목 -->
-            <li style=" line-height: 35px; float:left; font-size: 20pt; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf">신고 & 문의하기</li>
+            <li style=" line-height: 35px; float:left; font-size: 20pt; width:100%; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; background-color:#F9FFFF ">신고 & 문의하기</li>
+            <div style="background-color: white;">
+            <div style="background-color:#F9FFFF "></div>
             <!-- 게시판 목록  -->
+            <br><br><br>
             <li>
-                <ul id ="ulTable" >
-                    <li>
-                        <ul>
+                <ul id ="ulTable"  >
+                    <li style="background-color:#F9FFFF;" >
+                        <ul style="margin-top: 20px">
                             <li>No</li>
                             <li>제목</li>
                             <li>작성일</li>
@@ -253,11 +260,17 @@ $(function(){
             <br>
                 <div id="divPaging">
                 <%int count = (int)request.getAttribute("count"); %>
-                    <div>◀</div>
-                    <%for (int i = 1 ; i <= count; i++) {%>
-                    	<div><a href = #><%=i %></a></div>
-                    <%} %>
-                    <div>▶</div>
+                    <div>
+                    <table>
+	                    <tr>
+	                    	<th>◀</th>
+	                    <%for (int i = 1 ; i <= count; i++) {%>
+	                    	<td class = "paging"><a href = #><%=i %></a></td>
+	                    <%} %>
+	                    	<th>▶</th>
+	                    </tr>
+                    </table>
+                    </div>
                     
                 </div>
                 <%String log = (String)request.getAttribute("log"); %>
@@ -271,7 +284,7 @@ $(function(){
             
             <!-- 검색 폼 영역 -->
             <li id='liSearchOption'>
-                <div>
+                <div style="height: 60px; margin-top: 10px">
                     <select id='selSearchOption' >      
                     	<option value='닉네임'>닉네임</option>            
                         <option value='제목'>제목</option>
@@ -281,8 +294,10 @@ $(function(){
                     <input type='submit' value='검색' id="select"/>
                 </div>
                 </li>
+                </div>
         </ul>
     </div>
+    <br><br><br><br>
      </form>
     </article>
 </body>

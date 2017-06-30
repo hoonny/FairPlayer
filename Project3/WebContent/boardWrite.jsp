@@ -66,7 +66,7 @@ var $form = $("form");
 
 </script>
 </head>
-<body>
+<body style="background-color: #F9FFFF">
 <header> 
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
@@ -74,9 +74,9 @@ var $form = $("form");
 <form method="post" enctype="multipart/form-data" action="boardWrite.do">
 <div class="container">
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="background-color: white;">
     <thead>
-        <caption> 신고하기 </caption>
+        <h3 style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf"> 신고하기 </h3>
     </thead>
     
     <tbody>
