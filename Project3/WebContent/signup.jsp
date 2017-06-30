@@ -125,7 +125,7 @@ $(function(){
    </header>
       <article class="container">
         <div class="page-header" style="margin-top:80px;">
-          <h1 style="width: 140px; margin: auto;" >회원가입</h1>
+          <h1 style="width: 140px; margin: auto; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;" >회원가입</h1>
         </div>
         <div class="col-md-6 col-md-offset-3">
           <form role="form" method='post'>
