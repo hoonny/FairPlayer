@@ -160,7 +160,7 @@ $(function(){
 								<div class="sub-slide">
 									<ul>
 										<li id="abc">배드민턴<li>
-										<li><button>마포구</button><li><br>
+										<li><button>마포구</button><li><br><!--  -->
 										<li><button>구로구</button><li><br>
 										<li><button>강남구</button><li><br>
 										<li><button>강서구</button><li><br>
