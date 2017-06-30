@@ -79,7 +79,7 @@ $(function(){
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
 <article>			
-    <div id="hero" class="hero-section" style="height: 350px;">
+    <div id="hero" class="hero-section" style="height: 450px;">
         
         <div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-ride="" data-interval="10000" style="height: 450px">
             
