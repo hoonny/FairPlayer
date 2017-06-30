@@ -48,7 +48,11 @@ a{
 	font-size: 16px;
 	color: orange;
 }
+.imgbutton{
+border: none;
+background-color: #F9FFFF;
 
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
@@ -70,6 +74,41 @@ $(function(){
 			}
 		})//ajax
 	})//클릭
+	
+	var $imgbutton = $(".imgbutton");
+	$imgbutton.click(function(){
+		var $value = $(this).val();
+		var $sports;
+		var $gu;
+		var $dong;
+		if($value == 1){
+			$sports = '탁구';
+			$gu = '강남구';
+			$dong = '신사동';
+		}else if($value == 2){
+			$sports = '배드민턴'
+			$gu = '마포구';
+			$dong = '중동';
+		}else if($value == 3){
+			$sports = '볼링'
+			$gu = '강서구';
+			$dong = '화곡동';
+		}		
+		console.log($sports + "/" + $gu + "/" + $dong);
+		
+		$.ajax({
+			url : 'searchmain.do',
+			data : {sports : $sports, gu : $gu},
+			type : 'post',
+			success : function(data){
+				console.log("search.do로 이동");
+				location.href ="search.do";
+			}
+		})//ajax
+		
+	})//클릭
+	
+	
 })
 </script>
 </head> 
@@ -179,16 +218,16 @@ $(function(){
                         
             <div class="items-wrapper row" style="width: 1300px; margin:  auto; margin-left: 10px">
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 첫번쨰 그림  -->
-                            <img class="figure-image" src="./bootstrap/assets/images/main/111.jpg" alt="image" style="width: 100%; height: 100%;">
+                           <button value = "1" class = "imgbutton"><img class="figure-image" src="./bootstrap/assets/images/main/111.jpg" alt="image" style="width: 100%; height: 100%;"></button> 
                 </div><!--//item-->
                 
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 두번쨰 그림  -->
-                            <img class="figure-image" src="./bootstrap/assets/images/main/2.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <button value = "2" class = "imgbutton"><img class="figure-image" src="./bootstrap/assets/images/main/2.jpg" alt="image" style="width: 100%; height: 100%;"></button>
                 </div><!--//item-->
                 
                 
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px">
-                            <img class="figure-image" src="./bootstrap/assets/images/main/3.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <button value = "3" class = "imgbutton"><img class="figure-image" src="./bootstrap/assets/images/main/3.jpg" alt="image" style="width: 100%; height: 100%;"></button>
                 </div><!--//item-->
                 
             </div><!--//items-wrapper-->
