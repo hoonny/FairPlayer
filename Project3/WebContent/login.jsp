@@ -77,20 +77,20 @@
       <article class="container">
       <center>
         <div class="page-header" style="margin-top:100px; margin-bottom:30px;" >
-          <h1 style=" margin: 30px; font-size: 64px; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;" >우리동네   예체능<!-- ! --></h1>
+          <h1 style=" margin: 30px; font-size: 54px" >우리동네   예체능</h1>
         </div>
         <div class="col-md-6 col-md-offset-3">
          <div class="form-group">
           <form method='post'>
            <div class="form-group">
               <!-- <label for="InputEmail">E-mail</label> -->
-              <input type="text" class="form-control" id="id" name="id" style="height:60px;" placeholder="아이디 & 이메일"  maxlength="41"ss  />
+              <input type="text" class="form-control" id="id" name="id" style="height:60px;height:55px; width:85%; font-size:16px;" placeholder="이메일" />
               <!-- placeholder="아이디" class="int" maxlength="41" value="asdf" -->
              <label for="InputPassword1">                  </label>
-              <input type="password" class="form-control" id="pwd" name="pwd"  style="height:60px;" placeholder="비밀번호"/>
+              <input type="password" class="form-control" id="pwd" name="pwd"  style="height:50px;height:55px; width:85%; font-size:16px;" placeholder="비밀번호"/>
               <!-- <button type="button" class="btn btn-info" id="singup" >로그인<i class="fa fa-check spaceLeft"></i></button> -->
               <label for="InputPassword1">                  </label>
-            <button type="submit" class="btn btn-primary btn-block btn-large" style="height:80px; font-size: 35px" 
+            <button type="submit" class="btn btn-primary btn-block btn-large" style="height:70px;width:85%; font-size: 30px" 
 					value="로그인" >로그인</button>
 					
             </div>
