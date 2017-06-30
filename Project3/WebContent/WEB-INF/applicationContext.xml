@@ -12,7 +12,7 @@
     <bean id="dataSource"
       class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
       <property name="driverClass" value="com.mysql.jdbc.Driver" />
-      <property name="url" value="jdbc:mysql://ec2-52-78-194-164.ap-northeast-2.compute.amazonaws.com:3306/project2?
+      <property name="url" value="jdbc:mysql://ec2-52-79-212-161.ap-northeast-2.compute.amazonaws.com:3306/project2?
       						      useUnicode=true&amp;characterEncoding=utf8" />
       <property name="username" value="pro1" />
       <property name="password" value="kitri21" />
