@@ -2,6 +2,7 @@ package com.my.vo;
 
 public class Chat_room {
 	
+	private int room_id;
 	private String owner_id;
 	private String user_id;
 	private int count;
@@ -24,9 +25,18 @@ public class Chat_room {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Chat_room [owner_id=" + owner_id + ", user_id=" + user_id + ", count=" + count + "]";
+		return "Chat_room [room_id=" + room_id + ", owner_id=" + owner_id + ", user_id=" + user_id + ", count=" + count
+				+ "]";
+	}
+	public int getRoom_id() {
+		return room_id;
+	}
+	public void setRoom_id(int room_id) {
+		this.room_id = room_id;
 	}
 	@Override
 	public int hashCode() {
@@ -34,6 +44,7 @@ public class Chat_room {
 		int result = 1;
 		result = prime * result + count;
 		result = prime * result + ((owner_id == null) ? 0 : owner_id.hashCode());
+		result = prime * result + room_id;
 		result = prime * result + ((user_id == null) ? 0 : user_id.hashCode());
 		return result;
 	}
@@ -52,6 +63,8 @@ public class Chat_room {
 			if (other.owner_id != null)
 				return false;
 		} else if (!owner_id.equals(other.owner_id))
+			return false;
+		if (room_id != other.room_id)
 			return false;
 		if (user_id == null) {
 			if (other.user_id != null)

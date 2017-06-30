@@ -99,7 +99,7 @@ public class BoardController {
       List<RepBoard> b=null;
       Customer c = (Customer)session.getAttribute("loginInfo");
       String log = "";
-      int size = 10;
+      int size = 7;
       double count = dao.getCount();
       int pageCount = (int) Math.ceil(count/size);
       //System.out.println("총 글 갯수 : " + count + " 페이지 수 : " + pageCount );
