@@ -107,7 +107,8 @@ public class SearchController {
 			String sports_i = null;
 			String gu_i = null;
 			
-			if(sports == null){ //menu에서 들어올시
+			List<String> l = (List<String>) session.getAttribute("sports");
+			if(l == null){ //menu에서 들어올시
 				model.addAttribute("sports", "당구");
 				model.addAttribute("gu", "구로구");
 				model.addAttribute("dong", "구로동");
@@ -125,7 +126,7 @@ public class SearchController {
 				model.addAttribute("dong_all", list3);
 				
 			} else{ // main바에서 들어올시
-				List<String> l = (List<String>) session.getAttribute("sports");
+				
 				System.out.println("첫번째 값:"+l.get(0));
 				System.out.println("두번째 값:"+l.get(1));
 				
