@@ -209,17 +209,22 @@ $(function(){
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
    <br><br><br>
-   <article style="width: 700px; margin: auto;">
+   <article style="width: 700px; margin-left: ">
    <form method="post">
    <div id="mainWrapper">
+        
+        
         <ul>
             <!-- 게시판 제목 -->
-            <li style=" line-height: 35px; float:left; font-size: 20pt; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf">신고 & 문의하기</li>
+            <li style=" line-height: 35px; float:left; font-size: 20pt; width:100%; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; background-color:#F9FFFF ">신고 & 문의하기</li>
+            <div style="background-color: white;">
+            <div style="background-color:#F9FFFF "></div>
             <!-- 게시판 목록  -->
+            <br><br><br>
             <li>
-                <ul id ="ulTable" >
-                    <li>
-                        <ul>
+                <ul id ="ulTable"  >
+                    <li style="background-color:#F9FFFF;" >
+                        <ul style="margin-top: 20px">
                             <li>No</li>
                             <li>제목</li>
                             <li>작성일</li>
@@ -279,7 +284,7 @@ $(function(){
             
             <!-- 검색 폼 영역 -->
             <li id='liSearchOption'>
-                <div>
+                <div style="height: 60px; margin-top: 10px">
                     <select id='selSearchOption' >      
                     	<option value='닉네임'>닉네임</option>            
                         <option value='제목'>제목</option>
@@ -289,8 +294,10 @@ $(function(){
                     <input type='submit' value='검색' id="select"/>
                 </div>
                 </li>
+                </div>
         </ul>
     </div>
+    <br><br><br><br>
      </form>
     </article>
 </body>
