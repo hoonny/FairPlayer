@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
+	background-color: #f9fbff;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -27,7 +28,6 @@ a:hover .thecard {
     padding: 0;
     border: none;
     border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
 .thecard {
@@ -35,7 +35,6 @@ a:hover .thecard {
 	margin: 5% auto;
 	margin-left: 10px;
 	margin-right: 38px;
-	box-shadow: 0 1px 30px rgba(0, 0, 0, .4);
 	float: left;
 	display: block;
 	background-color: #fff;
@@ -53,6 +52,8 @@ a:hover .thecard {
 	background: #ffffff;
 	padding: 15px 25px 5px 25px;
 	border-radius: 0px 0px 4px 4px;
+	border-right: 2px solid #dcdcdc;
+	border-bottom: 2px solid #dcdcdc;
 }
 
 .card-outmore {
@@ -77,6 +78,15 @@ span.date {
 
 .center_name {
 	font-size: 22px;
+	font-family: 배달의민족 도현; 
+	src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;
+}
+
+@media .div_h and (min-height: 45px) height >= 48 px
+{
+    .center_name {
+    	font-size: 15px;
+    }
 }
 
 .bt_likeOn {
@@ -142,6 +152,9 @@ span.date {
 		width: 300px;
 	}
 }
+
+
+
 @media screen and (max-width: 767px) /* height <= 767 px */
 {
     .select_div {
@@ -170,7 +183,7 @@ span.date {
 		width: 100%;
 	}
 }
-}
+
 
 .div_list {
 	float: left;
