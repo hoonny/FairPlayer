@@ -188,7 +188,7 @@ $(function(){
     						alert("이미 방이 존재합니다.");
     					} else{
     						location.href="matching.do";
-    						window.open("http://localhost:8888/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+    						window.open("http://192.168.12.25:8889/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
     					}
     				} 
       	});
@@ -215,7 +215,7 @@ $(function(){
     						alert("입장 할 수 없습니다.");
     					} else{
     						location.href="matching.do";
-    						window.open("http://localhost:8888/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+    						window.open("http://192.168.12.25:8889/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
     					}
     				} 
       	});

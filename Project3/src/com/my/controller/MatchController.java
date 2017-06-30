@@ -7,10 +7,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
+import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -18,6 +20,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +34,11 @@ import com.my.vo.Match_room;
 import com.my.vo.Sports;
 
 @Controller
-@ServerEndpoint("/broadcasting")
+@ServerEndpoint(value = "/broadcasting", configurator = GetHttpSessionForWebSocket.class)
 public class MatchController {
-	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-	private static HashMap<Session, Chat_room> users = new HashMap<>();
+	private static final HashMap<Session, Chat_room> users = new HashMap<>();
+	private static final Map<String,Session> sessionMap = new HashMap<String,Session>();
+	private static final Map<Session,String> sessionMap2 = new HashMap<Session,String>();
 	private static Match_room matchRoom = new Match_room();
 	private static int room_no;
 	private static String email;
@@ -43,38 +47,71 @@ public class MatchController {
 	SearchDAO sdao;
 	@Autowired
 	MatchDAO mdao;
-	//client.getBasicRemote().sendText(message);
-	
+	//!client.equals(session)
 
+	
+	
+	
 	 @OnMessage
-	    public void onMessage(String message, Session session) throws IOException {
-		    //users.keySet();
+	    public void onMessage(String message,Session session) throws IOException {
+		 		
+		 		String emails = sessionMap2.get(session);
+		 		Session sessions = sessionMap.get(emails);
+		 		
+		    	Chat_room chat1 = users.get(session);
+		    	String owner;
+		    	String user = null;
+		    	int cnt = chat1.getCount();
+		    	if(cnt == 1){
+		    		owner = chat1.getOwner_id();
+		    	}else{
+		    		 owner = chat1.getOwner_id();
+		    		 user = chat1.getUser_id();
+		    	}
+		    	if(user != null){
+		    		if(emails.equals(owner)) {
+			        	sendToOne(message, sessionMap.get(user));
+			        } else if(emails.equals(user)){
+			        	sendToOne(message, sessionMap.get(owner));
+			        }	
+		    	}
+		    }
+		 
+		 
+		    
+/*		    //users.keySet();
 	        synchronized(users.keySet()) {
 	            for(Session client : users.keySet()) { //users 맵에서 key(session)들만 뽑아서 돌리기
-	                if(!client.equals(session)) {             	
-	                	HashMap<Integer, Object> rooms = matchRoom.getrooms();
+	                if(!client.equals(session)) {  
+	                	client.getBasicRemote().sendText(message);
 	                	Chat_room chat = new Chat_room();
-	        			chat = (Chat_room) rooms.get(session); 
+	        			chat = (Chat_room) users.get(client); 
 	        			int room_id1 = chat.getRoom_id();
-	        			int cnt = chat.getCount();
-	        			String owner = chat.getOwner_id();
-	        			String user = chat.getUser_id();
-	        			if(cnt == 2){
-	   
-	        			}
-	        			
+	        			System.out.println("["+room_id1 + ":::"+room_no+"]");
+	        				if(room_id1 == room_no){
+	        					client.getBasicRemote().sendText(message);
+	        				}
 	                }
 	            }
-	        }
-	    }
+	        }*/
+	 
+	 	private void sendToOne(String message, Session session){
+	 		try {
+				session.getBasicRemote().sendText(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	 	}
 	    
 	    @OnOpen
-	    public void onOpen(Session session) throws Exception {
+	    public void onOpen(Session session, EndpointConfig config) throws Exception {
+	    	
 	    	HashMap<Integer, Object> rooms = matchRoom.getrooms();
-			System.out.println("room_no : " + room_no);
 			Chat_room chatRoom = new Chat_room();
 			chatRoom = (Chat_room) rooms.get(room_no);
 			users.put(session,chatRoom);
+			sessionMap.put(email, session);
+			sessionMap2.put(session,email);
 			System.out.println(users.get(session)+"접속");
 			//clients.add(session);
 	    }
@@ -82,8 +119,12 @@ public class MatchController {
 	    @OnClose
 	    public void onClose(Session session) throws IOException {
 	       // clients.remove(session);
-	    	Chat_room cr = users.remove(session);
-	    	System.out.println(cr.getOwner_id()+ "님이 종료하였습니다.");
+	    	Chat_room cr = users.get(session);
+	    	System.out.println(email+ "님이 종료하였습니다.");
+	    	users.remove(session);
+	    	sessionMap.remove(session);
+	    	sessionMap2.remove(session);
+	    	
 	    }
 	    
 	@RequestMapping("/matching.do")
@@ -155,6 +196,7 @@ public class MatchController {
 		  	    	 matchRoom.make(s_room.getRoom_id(), 1, email);
 		  	    	 
 		  	    	 model.addAttribute("msg","1");
+		  	    	 System.out.println("mr:::"+mr);
 	  	    	 } else {
 	  	    		 if( mr.getOwner().equals(email)){
 	  	    			 model.addAttribute("msg","0");
