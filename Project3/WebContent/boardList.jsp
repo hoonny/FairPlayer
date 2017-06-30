@@ -213,12 +213,12 @@ $(function(){
 </header>
    <br><br><br>
    
-   <div style="float: right; width: 350px; height:380px; background-color:white; position: absolute; left: 970px; top:180px; text-align: center; font-size: 13pt;  font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">
+   <div style="float: right; width: 450px; height:380px; background-color:white; position: absolute; left: 970px; top:180px; text-align: center; font-size: 15pt;  font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">
   		<br><br>
   			신고 & 문의하신 내용은 빠른 시일 안에<br>
   			답변 드릴 수 있도록 노력하겠습니다.<br><br><br>
   			
-  			<div style="font-size: 16pt; color: green;">고객센터 1234-5678</div>
+  			<div style="font-size: 20pt; color: green;">고객센터 1234-5678</div>
   			<br><br>
   			
   			운영시간<br>
@@ -259,15 +259,15 @@ $(function(){
                     
                     <li id="tablekk">
                         <ul>
-                            <li   style="height: 76px; line-height: 76px;  text-align: center;" class="k1"><%=b.getRepboard_no() %></li>
+                            <li   style="height: 76px; line-height: 76px;  text-align: center; font-size: 11pt;" class="k1"><%=b.getRepboard_no() %></li>
                             <%if (b.getParent_no() == 0  ){ %>  
-                            <li  class="left" style="height: 76px; line-height: 76px; text-align: center; " class="k2"><a class="k2" href="" style="color: black; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>
+                            <li  class="left" style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt; " class="k2"><a class="k2" href="" style="color: black; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>
                              <%} else { %>
-							<li  class="left" style="height: 76px; line-height: 76px; text-align: center;" class="k2"><a class="k2" href="" style="color: #AE905E; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>                           
+							<li  class="left" style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt;" class="k2"><a class="k2" href="" style="color: #AE905E; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>                           
                             <%} %>
-                            <li  style="height: 76px; line-height: 76px; text-align: center;" class="k4"><%=b.getDate() %></li>
-                            <li style="height: 76px; line-height: 76px; text-align: center;" class="k5"><%=b.getNickname() %></li>
-                            <li  style="height: 76px; line-height: 76px ;text-align: center;" class="k6"><%=b.getViews() %></li>
+                            <li  style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt;" class="k4"><%=b.getDate() %></li>
+                            <li style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt;" class="k5"><%=b.getNickname() %></li>
+                            <li  style="height: 76px; line-height: 76px ;text-align: center; font-size: 11pt;" class="k6"><%=b.getViews() %></li>
                         </ul>  
                     </li>
                          <%} %>           
