@@ -43,22 +43,46 @@ ul{
 a{
   color:#ffffff;
 }
-#abc {
+#ab {
 	font-style: normal;
 	font-size: 16px;
 	color: orange;
+	padding-bottom: 7px;
 }
+#cd {
+	color: white;
+	cursor:pointer;
+}
+.imgbutton{
+border: none;
+background-color: #F9FFFF;
 
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
-	var $test = $(".sub-slide>ul>li>button");
-	$test.click(function(){
-		var $sports = $(this).parent().siblings("#abc").text();
-		var $gu = $(this).text();		
-		console.log($sports);
-		console.log($gu);
+	
+	var $imgbutton = $(".imgbutton");
+	$imgbutton.click(function(){
+		var $value = $(this).val();
+		var $sports;
+		var $gu;
+		var $dong;
+		if($value == 1){
+			$sports = '탁구';
+			$gu = '강남구';
+			$dong = '신사동';
+		}else if($value == 2){
+			$sports = '배드민턴'
+			$gu = '마포구';
+			$dong = '중동';
+		}else if($value == 3){
+			$sports = '볼링'
+			$gu = '강서구';
+			$dong = '화곡동';
+		}		
+		console.log($sports + "/" + $gu + "/" + $dong);
 		
 		$.ajax({
 			url : 'searchmain.do',
@@ -69,8 +93,87 @@ $(function(){
 				location.href ="search.do";
 			}
 		})//ajax
+		
 	})//클릭
 })
+
+function li(index){	
+	if(index >= 10 && index < 20) {
+		var $sports = "볼링";
+		if(index == 11){
+			var $gu = "마포구";
+		}else if(index == 12){
+			var $gu = "구로구";
+		}else if(index == 13){
+			var $gu = "강남구";
+		}else if(index == 14){
+			var $gu = "강서구";
+		}else if(index == 15){
+			var $gu = "중구";
+		}
+	}else if(index >= 20 && index < 30) {
+		var $sports = "배드민턴";
+		if(index == 21){
+			var $gu = "마포구";
+		}else if(index == 22){
+			var $gu = "구로구";
+		}else if(index == 23){
+			var $gu = "강남구";
+		}else if(index == 24){
+			var $gu = "강서구";
+		}else if(index == 25){
+			var $gu = "중구";
+		}
+	}else if(index >= 30 && index < 40) {
+		var $sports = "테니스";
+		if(index == 31){
+			var $gu = "마포구";
+		}else if(index == 32){
+			var $gu = "구로구";
+		}else if(index == 33){
+			var $gu = "강남구";
+		}else if(index == 34){
+			var $gu = "강서구";
+		}else if(index == 35){
+			var $gu = "중구";
+		}
+	}else if(index >= 40 && index < 50) {
+		var $sports = "당구";
+		if(index == 41){
+			var $gu = "마포구";
+		}else if(index == 42){
+			var $gu = "구로구";
+		}else if(index == 43){
+			var $gu = "강남구";
+		}else if(index == 44){
+			var $gu = "강서구";
+		}else if(index == 45){
+			var $gu = "중구";
+		}
+	}else if(index >= 50 && index < 60) {
+		var $sports = "탁구";
+		if(index == 51){
+			var $gu = "마포구";
+		}else if(index == 52){
+			var $gu = "구로구";
+		}else if(index == 53){
+			var $gu = "강남구";
+		}else if(index == 54){
+			var $gu = "강서구";
+		}else if(index == 55){
+			var $gu = "중구";
+		}
+	}
+	$.ajax({
+		url : 'searchmain.do',
+		data : {sports : $sports, gu : $gu},
+		type : 'post',
+		success : function(data){
+			console.log("search.do로 이동");
+			location.href ="search.do";
+		}
+	})//ajax
+}
 </script>
 </head> 
 
@@ -110,52 +213,52 @@ $(function(){
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
 								<div class="sub-slide">
 									<ul>
-										<li id="abc">당구<li>
-										<li style="color: black;"><button style="outline: none;opacity: 0.6;background-color:#000000;" >마포구</button><li><br>
-										<li><button>구로구</button><li><br>
-										<li><button>강남구</button><li><br>
-										<li><button>강서구</button><li><br>
-										<li><button>중구</button><li><br>
+										<li id="ab">볼링<li>
+										<li id="cd" value="11" onclick="li(this.value)">마포구<li><br>
+										<li id="cd" value="12" onclick="li(this.value)">구로구<li><br>
+										<li id="cd" value="13" onclick="li(this.value)">강남구<li><br>
+										<li id="cd" value="14" onclick="li(this.value)">강서구<li><br>
+										<li id="cd" value="15" onclick="li(this.value)">중구<li><br>
 									</ul>
 								</div>
 								<div class="sub-slide">
 									<ul>
-										<li id="abc">배드민턴<li>
-										<li><button>마포구</button><li><br>
-										<li><button>구로구</button><li><br>
-										<li><button>강남구</button><li><br>
-										<li><button>강서구</button><li><br>
-										<li><button>중구</button><li><br>
+										<li id="ab">배드민턴<li>
+										<li id="cd" value="21" onclick="li(this.value)">마포구<li><br>
+										<li id="cd" value="22" onclick="li(this.value)">구로구<li><br>
+										<li id="cd" value="23" onclick="li(this.value)">강남구<li><br>
+										<li id="cd" value="24" onclick="li(this.value)">강서구<li><br>
+										<li id="cd" value="25" onclick="li(this.value)">중구<li><br>
 									</ul>
 								</div>
 								<div class="sub-slide">
 									<ul>
-										<li id="abc">테니스<li>
-										<li><button>마포구</button><li><br>
-										<li><button>구로구</button><li><br>
-										<li><button>강남구</button><li><br>
-										<li><button>강서구</button><li><br>
-										<li><button>중구</button><li><br>
+										<li id="ab">테니스<li>
+										<li id="cd" value="31" onclick="li(this.value)">마포구<li><br>
+										<li id="cd" value="32" onclick="li(this.value)">구로구<li><br>
+										<li id="cd" value="33" onclick="li(this.value)">강남구<li><br>
+										<li id="cd" value="34" onclick="li(this.value)">강서구<li><br>
+										<li id="cd" value="35" onclick="li(this.value)">중구<li><br>
 									</ul>
 								</div>
 								<div class="sub-slide">
 									<ul>
-										<li id="abc">볼링<li>
-										<li><button>마포구</button><li><br>
-										<li><button>구로구</button><li><br>
-										<li><button>강남구</button><li><br>
-										<li><button>강서구</button><li><br>
-										<li><button>중구</button><li><br>
+										<li id="ab">당구<li>
+										<li id="cd" value="41" onclick="li(this.value)">마포구<li><br>
+										<li id="cd" value="42" onclick="li(this.value)">구로구<li><br>
+										<li id="cd" value="43" onclick="li(this.value)">강남구<li><br>
+										<li id="cd" value="44" onclick="li(this.value)">강서구<li><br>
+										<li id="cd" value="45" onclick="li(this.value)">중구<li><br>
 									</ul>
 								</div>
 								<div class="sub-slide">
 									<ul>
-										<li id="abc">탁구<li>
-										<li><button>마포구</button><li><br>
-										<li><button>구로구</button><li><br>
-										<li><button>강남구</button><li><br>
-										<li><button>강서구</button><li><br>
-										<li><button>중구</button><li><br>
+										<li id="ab">탁구<li>
+										<li id="cd" value="51" onclick="li(this.value)">마포구<li><br>
+										<li id="cd" value="52" onclick="li(this.value)">구로구<li><br>
+										<li id="cd" value="53" onclick="li(this.value)">강남구<li><br>
+										<li id="cd" value="54" onclick="li(this.value)">강서구<li><br>
+										<li id="cd" value="55" onclick="li(this.value)">중구<li><br>
 									</ul>
 								</div>
 							</ul>
@@ -179,16 +282,16 @@ $(function(){
                         
             <div class="items-wrapper row" style="width: 1300px; margin:  auto; margin-left: 10px">
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 첫번쨰 그림  -->
-                            <img class="figure-image" src="./bootstrap/assets/images/main/111.jpg" alt="image" style="width: 100%; height: 100%;">
+                           <button value = "1" class = "imgbutton"><img class="figure-image" src="./bootstrap/assets/images/main/111.jpg" alt="image" style="width: 100%; height: 100%;"></button> 
                 </div><!--//item-->
                 
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px"> <!-- 두번쨰 그림  -->
-                            <img class="figure-image" src="./bootstrap/assets/images/main/2.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <button value = "2" class = "imgbutton"><img class="figure-image" src="./bootstrap/assets/images/main/2.jpg" alt="image" style="width: 100%; height: 100%;"></button>
                 </div><!--//item-->
                 
                 
                 <div class="item col-sm-4 col-xs-12" style="width: 368px; height: 297px; display: inline-block; padding: 2px">
-                            <img class="figure-image" src="./bootstrap/assets/images/main/3.jpg" alt="image" style="width: 100%; height: 100%;">
+                            <button value = "3" class = "imgbutton"><img class="figure-image" src="./bootstrap/assets/images/main/3.jpg" alt="image" style="width: 100%; height: 100%;"></button>
                 </div><!--//item-->
                 
             </div><!--//items-wrapper-->

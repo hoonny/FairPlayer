@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- bb -->
+<!-- dd -->
 <title>searching.jsp</title>
 <!-- Meta -->
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="./bootstrap/assets/css/styles.css">
 	<!-- Search CSS -->
-	<link rel="stylesheet" type="text/css" href="search.css?ver=1"> 
+	<link rel="stylesheet" type="text/css" href="search.css?ver=2"> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -44,7 +44,7 @@
 					var data = responseData.trim(); //공백을 없애기위해
 					if (data == '1') {
 						alert("");
-					} else {
+					}else {
 						var $parentObj = $(".article");
 						if ($parentObj.length == 0) { //article영역의 유무에 따라 출력
 							$parentObj = $("body");
@@ -111,7 +111,7 @@
 		
 		/********************예약버튼*************************/
 		function reserve(booking_site) {
-			alert(booking_site);
+			//alert(booking_site);
 			var str = booking_site;
 			var res = str.split(",");
 			var $booking = res[0];
@@ -142,6 +142,7 @@
 <c:set var="latitude" value="${requestScope.latitude }"/>
 <c:set var="longtitude" value="${requestScope.longtitude }"/>
 <c:set var="like_list" value="${requestScope.like_list }"/>
+<c:set var="size" value="${fn:length(list) }"/>
 
 
 <!-- **************************종복/구/동 선택창************************* -->  
@@ -196,12 +197,18 @@
 <hr>
 
 <!-- **************************센터목록 리스트************************* -->
-
+<c:choose>
+<c:when test="${size > 1 }">
    <div class="form-inline div_list container">
          
       <c:forEach var="p" items="${list}" varStatus = "status">  
+      <c:if test="${p.center_id == null }">
+      	<div id="search_none">
+      		<img src="./bootstrap/assets/images/search_none.png">
+    	</div>
+      </c:if>
       <!-- <div class="row"> -->
-      <div class="teduri col-sm-6 col-md-4 col-lg-4 mt-4">  
+      <div class="teduri col-sm-6 col-md-4 col-lg-3 mt-4">  
 		<!-- <form class="form-inline center_list" style="width:100%;margin:auto;height:100%;"> -->
 			<div class="thecard">
 				<div class="card-img">
@@ -230,10 +237,10 @@
 					</c:forEach>
 					
 					<!-- <span class="date">010-1234-5678</span> -->
-					<h1 class = 'center_name'>${p.center_name }</h1>
-					<p>${p.gu } ${p.dong } ${p.adress }</p>
-					<p>가격 : ${p.price }</p>
-					<p>${p.call_no }</p>
+					<div class="div_h"><h1 class = "center_name" >${p.center_name }</h1></div>
+					<p style="font-weight: bold;">${p.gu } ${p.dong } ${p.adress }</p>
+					<p style="font-weight: bold;">가격 : ${p.price }</p>
+					<p style="font-weight: bold;">${p.call_no }</p>
 					<input type="hidden" name="center_id" value="${p.center_id }" readonly>
 					<button class="bt_gps btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"  type="button" value="${p.sport_name},${p.center_name},${p.gu},${p.dong},${p.latitude},${p.longtitude}" id="btGps${p.center_id }" onclick="gpsMap(this.value)" style="background-color: white;border:none; outline: none;">
 						<img src="./bootstrap/assets/images/btgps.png">
@@ -259,7 +266,15 @@
 		<!-- </div> -->
       </c:forEach>  
 	</div >  
- 
+</c:when>
+<c:otherwise>
+<div class="form-inline div_list container">
+	<div id="search_none" align="center" style="width: 100%;">
+      	<img src="./bootstrap/assets/images/search_none.png">
+    </div>
+</div>
+</c:otherwise>
+</c:choose>
 	<!-- **************************지도 리스트************************* -->
 			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d176cdd19165736594ab4a5e1c323d50"></script>
 			<script>
