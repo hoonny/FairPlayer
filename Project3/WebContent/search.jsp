@@ -44,7 +44,7 @@
 					var data = responseData.trim(); //공백을 없애기위해
 					if (data == '1') {
 						alert("");
-					} else {
+					}else {
 						var $parentObj = $(".article");
 						if ($parentObj.length == 0) { //article영역의 유무에 따라 출력
 							$parentObj = $("body");
@@ -111,7 +111,7 @@
 		
 		/********************예약버튼*************************/
 		function reserve(booking_site) {
-			alert(booking_site);
+			//alert(booking_site);
 			var str = booking_site;
 			var res = str.split(",");
 			var $booking = res[0];
@@ -196,10 +196,21 @@
 <hr>
 
 <!-- **************************센터목록 리스트************************* -->
-
+<c:choose>
+<c:when test="${list == null }">
+	<div id="search_none">
+      	<img src="./bootstrap/assets/images/search_none.png">
+    </div>
+</c:when>
+<c:when test="${list != null }">
    <div class="form-inline div_list container">
          
       <c:forEach var="p" items="${list}" varStatus = "status">  
+      <c:if test="${p.center_id == null }">
+      	<div id="search_none">
+      		<img src="./bootstrap/assets/images/search_none.png">
+    	</div>
+      </c:if>
       <!-- <div class="row"> -->
       <div class="teduri col-sm-6 col-md-4 col-lg-4 mt-4">  
 		<!-- <form class="form-inline center_list" style="width:100%;margin:auto;height:100%;"> -->
@@ -259,7 +270,9 @@
 		<!-- </div> -->
       </c:forEach>  
 	</div >  
- 
+</c:when>
+
+</c:choose>
 	<!-- **************************지도 리스트************************* -->
 			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d176cdd19165736594ab4a5e1c323d50"></script>
 			<script>

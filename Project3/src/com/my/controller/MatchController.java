@@ -43,16 +43,26 @@ public class MatchController {
 	SearchDAO sdao;
 	@Autowired
 	MatchDAO mdao;
-	
+	//client.getBasicRemote().sendText(message);
 	
 
 	 @OnMessage
 	    public void onMessage(String message, Session session) throws IOException {
 		    //users.keySet();
 	        synchronized(users.keySet()) {
-	            for(Session client : users.keySet()) {
-	                if(!client.equals(session)) {
-	                    client.getBasicRemote().sendText(message);
+	            for(Session client : users.keySet()) { //users 맵에서 key(session)들만 뽑아서 돌리기
+	                if(!client.equals(session)) {             	
+	                	HashMap<Integer, Object> rooms = matchRoom.getrooms();
+	                	Chat_room chat = new Chat_room();
+	        			chat = (Chat_room) rooms.get(session); 
+	        			int room_id1 = chat.getRoom_id();
+	        			int cnt = chat.getCount();
+	        			String owner = chat.getOwner_id();
+	        			String user = chat.getUser_id();
+	        			if(cnt == 2){
+	   
+	        			}
+	        			
 	                }
 	            }
 	        }
@@ -197,6 +207,7 @@ public class MatchController {
 	      email = c.getEmail();
 	      System.out.println("email:::"+email);
 	      matchRoom.join(room_id, 1, email);
+	      room_no = room_id;
 		  model.addAttribute("msg","1");
 		  
 	      String forwardURL = "/result.jsp";
