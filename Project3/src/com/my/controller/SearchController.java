@@ -102,7 +102,7 @@ public class SearchController {
 			String sports_i = null;
 			String gu_i = null;
 			
-			if(sports != null){ //menu에서 들어올시
+			if(sports == null){ //menu에서 들어올시
 				model.addAttribute("sports", sports);
 				model.addAttribute("gu", gu);
 				model.addAttribute("dong", dong);
@@ -130,6 +130,11 @@ public class SearchController {
 
 				sports_i = l.get(0);
 				gu_i = l.get(1);
+				
+				//gu목록
+				List<String> list2 = dao.selectBySports(sports_i);
+				System.out.println("구:"+ list2);
+				model.addAttribute("gu_all", list2);
 				
 				//dong목록
 				List<String> list3 = dao.selectByGu(gu_i);
@@ -178,7 +183,7 @@ public class SearchController {
 	@RequestMapping("/searchreserve.do")
 	public String searchreserve(Model model, int booking, String booking_site) {
 		System.out.println("booking :"+ booking + "booking_site :"+ booking_site);
-		List<Sports> list = null;
+		List<Sports> list = null;//
 		return null;
 	}
 }

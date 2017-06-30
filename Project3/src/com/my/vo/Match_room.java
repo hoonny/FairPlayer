@@ -76,6 +76,7 @@ public class Match_room {
 	
 	public void make(int room_id, int count, String owner){
 		Chat_room chatroom = new Chat_room();
+		chatroom.setRoom_id(room_id);
 		chatroom.setCount(count);
 		chatroom.setOwner_id(owner);
 		chatroom.setUser_id(null);
