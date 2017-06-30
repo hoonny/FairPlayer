@@ -149,7 +149,7 @@ $(function(){
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
 								<div class="sub-slide">
 									<ul>
-										<li id="abc">당구<li>
+										<li id="abc">당구<li><!--  -->
 										<li style="color: black;"><button style="outline: none;opacity: 0.6;background-color:#000000;" >마포구</button><li><br>
 										<li><button>구로구</button><li><br>
 										<li><button>강남구</button><li><br>
