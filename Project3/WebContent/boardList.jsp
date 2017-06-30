@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>신고 & 문의하기</title>
+<link id="theme-style" rel="stylesheet" href="./bootstrap/assets/css/styles.css">
 <style type="text/css">
     body{
         line-height:2em;        
@@ -25,7 +26,7 @@
 
     #mainWrapper{
         width:610px;
-        margin: auto;
+        
         !important
     }
 
@@ -42,12 +43,14 @@
     
 
     #ulTable > li:first-child > ul > li {
-        background-color:#c9c9c9;
-        font-weight:bold;
+        background-color: #eff2ff;
         text-align:center;
         height: 30px;
         line-height: 30px;
-        font-size: 13px;
+        font-size: 13pt;
+        font-family: 배달의민족 도현; 
+        src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;
+        
 }
 
     #ulTable > li > ul {
@@ -204,32 +207,49 @@ $(function(){
 </script>
 
 </head>
-<body style="background-color: #F9FFFF">
+<body style="background-color: #f9fbff">
 <header> 
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
    <br><br><br>
-   <article style="width: 700px; margin-left: ">
+   
+   <div style="float: right; width: 350px; height:380px; background-color:white; position: absolute; left: 970px; top:180px; text-align: center; font-size: 13pt;  font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">
+  		<br><br>
+  			신고 & 문의하신 내용은 빠른 시일 안에<br>
+  			답변 드릴 수 있도록 노력하겠습니다.<br><br><br>
+  			
+  			<div style="font-size: 16pt; color: green;">고객센터 1234-5678</div>
+  			<br><br>
+  			
+  			운영시간<br>
+			평일 09:00~18:00<br>
+			(주말,공휴일 휴무 / 점심시간 12:00~13:30)<br>
+  			
+  
+   
+   
+
+   </div>
+   <article style="width: 920px;">
    <form method="post">
-   <div id="mainWrapper">
-        
-        
-        <ul>
+   <div id="mainWrapper" style="margin-left: 20px">
+        <ul style="width: 860px">
             <!-- 게시판 제목 -->
-            <li style=" line-height: 35px; float:left; font-size: 20pt; width:100%; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; background-color:#F9FFFF ">신고 & 문의하기</li>
-            <div style="background-color: white;">
-            <div style="background-color:#F9FFFF "></div>
+            <li style="line-height: 35px; float:left; font-size: 20pt; width:920px; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf; background-color:#f9fbff ">신고 & 문의하기</li>
+            <div style="width: 920px; background-color: white;">
+            <div style="background-color: white; width: 860px; margin: auto;">
+            <div style="background-color:#f9fbff "></div>
             <!-- 게시판 목록  -->
-            <br><br><br>
+            
             <li>
                 <ul id ="ulTable"  >
-                    <li style="background-color:#F9FFFF;" >
-                        <ul style="margin-top: 20px">
-                            <li>No</li>
-                            <li>제목</li>
-                            <li>작성일</li>
-                            <li>작성자</li>
-                            <li>조회수</li>
+                    <li style="background-color:#f9fbff;" >
+                        <ul>
+                            <li style="margin-top: 20px;">No</li>
+                            <li style="margin-top: 20px">제목</li>
+                            <li style="margin-top: 20px">작성일</li>
+                            <li style="margin-top: 20px">작성자</li>
+                            <li style="margin-top: 20px;" >조회수</li>
                         </ul>
                     </li>
                     <!-- 게시물이 출력될 영역 -->
@@ -239,15 +259,15 @@ $(function(){
                     
                     <li id="tablekk">
                         <ul>
-                            <li   style="height: 27px; line-height: 28px;  text-align: center;" class="k1"><%=b.getRepboard_no() %></li>
+                            <li   style="height: 76px; line-height: 76px;  text-align: center;" class="k1"><%=b.getRepboard_no() %></li>
                             <%if (b.getParent_no() == 0  ){ %>  
-                            <li  class="left" style="height: 27px; line-height: 28px; text-align: center;" class="k2"><a class="k2" href="" style="color: black;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>
+                            <li  class="left" style="height: 76px; line-height: 76px; text-align: center; " class="k2"><a class="k2" href="" style="color: black; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>
                              <%} else { %>
-							<li  class="left" style="height: 27px; line-height: 28px; text-align: center;" class="k2"><a class="k2" href="" style="color: #AE905E;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>                           
+							<li  class="left" style="height: 76px; line-height: 76px; text-align: center;" class="k2"><a class="k2" href="" style="color: #AE905E; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>                           
                             <%} %>
-                            <li  style="height: 27px; line-height: 28px; text-align: center;" class="k4"><%=b.getDate() %></li>
-                            <li style="height: 27px; line-height: 28px; text-align: center;" class="k5"><%=b.getNickname() %></li>
-                            <li  style="height: 27px; line-height: 28px ;text-align: center;" class="k6"><%=b.getViews() %></li>
+                            <li  style="height: 76px; line-height: 76px; text-align: center;" class="k4"><%=b.getDate() %></li>
+                            <li style="height: 76px; line-height: 76px; text-align: center;" class="k5"><%=b.getNickname() %></li>
+                            <li  style="height: 76px; line-height: 76px ;text-align: center;" class="k6"><%=b.getViews() %></li>
                         </ul>  
                     </li>
                          <%} %>           
@@ -277,7 +297,6 @@ $(function(){
                 <%if (log =="1") { %>
                 <input type="button" value="글쓰기" id="write">
                 <%}else if (log =="2") { %>
-                	글쓰기는 로그인이 필요합니다	
                 <%} %>
             </li>
                            
@@ -295,10 +314,22 @@ $(function(){
                 </div>
                 </li>
                 </div>
+                </div>
+        	</div>
         </ul>
-    </div>
     <br><br><br><br>
      </form>
     </article>
+    <footer class="footer text-center" style="margin: auto;">
+        <div class="container" style="text-align: center;">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright" >본 웹 페이지는 현재 FairPlay 팀에서 운영하고 있는 생활체육 검색 시스템이 적용 되어 있습니다. <br>
+            								사업자등록번호 : 123-45-6789  통신판매업신고 : 제 1234-서울금천-12345호<br>
+											서울특별시 구로구 디지털로34길 43 코오롱싸이언스밸리1차 401호 ㈜ 우리동네 예체능 (대표자 : 윤웅재)<br>
+											고객센터 1234-5678 (평일 오전 8시 ~ 오후 8시 / 주말 및 공휴일 오전 9시 ~ 오후 6시)<br>
+											 copyright ⓒ 2017. ALL RIGHTS RESERVED BY KITRI FairPlay</small>
+            
+        </div><!--//container-->
+    </footer>
 </body>
 </html>

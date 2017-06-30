@@ -6,7 +6,7 @@
 
    <!-- 글목록 불러오기 -->
    <select id = 'List' parameterType="Paging" resultType = "RepBoard">
-     SELECT  CONCAT(REPEAT('    ', level - 1), CAST(hi.repboard_no AS CHAR)) AS repboard_no, parent_no,subject, content, nickname, date_format(date,'%Y-%m-%d %H:%i:%S') date, views,level
+     SELECT  CONCAT(REPEAT('    ', level - 1), CAST(hi.repboard_no AS CHAR)) AS repboard_no, parent_no,subject, content, nickname, date_format(date,'%Y-%m-%d') date, views,level
 		FROM    (
 					SELECT  hierarchy_connect_by_parent_eq_prior_id(repboard_no) AS repboard_no, @level AS level
 					FROM    (
