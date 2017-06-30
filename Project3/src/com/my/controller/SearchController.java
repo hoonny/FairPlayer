@@ -102,7 +102,7 @@ public class SearchController {
 			String sports_i = null;
 			String gu_i = null;
 			
-			if(sports != null){ //menu에서 들어올시
+			if(sports == null){ //menu에서 들어올시
 				model.addAttribute("sports", sports);
 				model.addAttribute("gu", gu);
 				model.addAttribute("dong", dong);
