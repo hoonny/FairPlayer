@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <title>우리동네예체능 로그인</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
           <!-- Bootstrap -->
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
@@ -21,17 +22,7 @@
     <link rel="stylesheet" href="./bootstrap/assets/plugins/font-awesome/css/font-awesome.css">
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="./bootstrap/assets/css/styles.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  
      <script>
   $(function(){
    var $form = $('form');
@@ -67,6 +58,7 @@
     });        
   });
   </script>
+  
 </head>
 <body>
 <!-- ******HEADER****** --> 
@@ -92,11 +84,37 @@
               <label for="InputPassword1">                  </label>
             <button type="submit" class="btn btn-primary btn-block btn-large" style="height:70px;width:85%; font-size: 30px" 
 					value="로그인" >로그인</button>
-					
+			<br><br>
+			 <a id="kakao-login-btn"></a>
+					<script type='text/javascript'>
+					    Kakao.init('a6f0053da34f1098359ce57a756639cb');
+					    Kakao.Auth.createLoginButton({
+					      container: '#kakao-login-btn',
+					      success: function(authObj) {
+					        Kakao.API.request({
+					          url: '/v1/user/me',
+					          success: function(res) {
+					//       	   alert(JSON.stringify(res));
+						          var $nickname = res.properties.nickname;
+						          var $id = res.id;
+					           location.href = "./login.do?nickname=" + $nickname + "&flag=1&id=" + $id;
+					          },
+					          fail: function(error) {
+					            alert(JSON.stringify(error));
+					          }
+					        });
+					      },
+					      fail: function(err) {
+					        alert(JSON.stringify(err));
+					      }
+					    });
+					</script>
             </div>
           </form>
         </div>
         </div>
+        
+
       </article>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
