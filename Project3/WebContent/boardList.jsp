@@ -213,7 +213,7 @@ $(function(){
 </header>
    <br><br><br>
    
-   <div style="float: right; width: 450px; height:380px; background-color:white; position: absolute; left: 970px; top:180px; text-align: center; font-size: 15pt;  font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">
+   <div style="float: right; width: 450px; height:380px; background-color:white; position: absolute; left: 970px; top:134px; text-align: center; font-size: 15pt;  font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">
   		<br><br>
   			신고 & 문의하신 내용은 빠른 시일 안에<br>
   			답변 드릴 수 있도록 노력하겠습니다.<br><br><br>

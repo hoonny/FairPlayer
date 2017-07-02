@@ -56,10 +56,11 @@ $(function(){
 <form method="post" enctype="multipart/form-data">
 <div class="container">
 
-<table class="table table-bordered" style="background-color: white;">
     <thead>
         <h3 style="font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf"> 답글달기 </h3>
     </thead>
+
+<table class="table table-bordered" style="background-color: white; padding-top: 20px;">
     <%RepBoard  b= (RepBoard)request.getAttribute("msg"); %>
     <tbody>   
             <tr>
@@ -71,26 +72,16 @@ $(function(){
                 <td><textarea cols="10" placeholder="답변 할 내용을 입력하세요. " name="content" class="form-control" style="height: 300px" ></textarea></td>
             </tr>
             <tr>
-                <th>첨부파일: </th>
-                <td><input type="file" value="파일첨부" name="uploadfile"/></td>
-            </tr>
-            <tr>
                 <th>비밀번호: </th>
                 <td><input type="password" placeholder="비밀번호를 입력하세요" class="form-control" style="width: 200px" name="password"/></td>
             </tr>
             <tr>
-                <td colspan="2">                    
-                        <input type="button"  id="write"  value="등록"  class="pull-right"/> 
-                                            
-                    <input type="button" value="목록" class="pull-left" onclick="javascript:location.href='boardList.do'"/>
-                    <!-- <a class="btn btn-default" onclick="sendData()"> 등록 </a>
-                    <a class="btn btn-default" type="reset"> reset </a>
-                    <a class="btn btn-default" onclick="javascript:location.href='list.jsp'">글 목록으로...</a> -->
+                 <td colspan="2">                    
+                        <input type="button"  id="write"  value="등록"  class="pull-right"/>                     
+                    	<input type="button" value="목록" class="pull-left" onclick="javascript:location.href='boardList.do'"/>
                 </td>
             </tr>
     </tbody>
-    
-    
 </table>
 </div>
 </form>

@@ -97,8 +97,9 @@ $(function(){
      <jsp:include page="menu.jsp"></jsp:include>
    </div> 
    <br><br><br><br>
-<div class="container" style="width: 750px; margin: auto;">
-<table class="table table-bordered" style="width: 700px; background-color: white;">
+ <div style="background-color: white; width: 750px; height: 555px; margin: auto;">
+<div class="container" style="width: 750px; padding-top:20px; padding-left:0px; padding-right:0px; margin: auto; background-color: white;">
+<table class="table table-bordered" style="width: 700px; background-color: white; margin: auto;">
     
     
         <form method="post" encType="multiplart/form-data">
@@ -163,6 +164,7 @@ $(function(){
             </form>
     
 </table>
+</div>
 </div>
 </body>
 </html>
