@@ -47,11 +47,7 @@ public class MatchController {
 	SearchDAO sdao;
 	@Autowired
 	MatchDAO mdao;
-	//!client.equals(session)
 
-	
-	
-	
 	 @OnMessage
 	    public void onMessage(String message,Session session) throws IOException {
 		 		
@@ -76,24 +72,6 @@ public class MatchController {
 			        }	
 		    	}
 		    }
-		 
-		 
-		    
-/*		    //users.keySet();
-	        synchronized(users.keySet()) {
-	            for(Session client : users.keySet()) { //users 맵에서 key(session)들만 뽑아서 돌리기
-	                if(!client.equals(session)) {  
-	                	client.getBasicRemote().sendText(message);
-	                	Chat_room chat = new Chat_room();
-	        			chat = (Chat_room) users.get(client); 
-	        			int room_id1 = chat.getRoom_id();
-	        			System.out.println("["+room_id1 + ":::"+room_no+"]");
-	        				if(room_id1 == room_no){
-	        					client.getBasicRemote().sendText(message);
-	        				}
-	                }
-	            }
-	        }*/
 	 
 	 	private void sendToOne(String message, Session session){
 	 		try {
@@ -113,18 +91,15 @@ public class MatchController {
 			sessionMap.put(email, session);
 			sessionMap2.put(session,email);
 			System.out.println(users.get(session)+"접속");
-			//clients.add(session);
 	    }
 	    
 	    @OnClose
 	    public void onClose(Session session) throws IOException {
-	       // clients.remove(session);
 	    	Chat_room cr = users.get(session);
 	    	System.out.println(email+ "님이 종료하였습니다.");
 	    	users.remove(session);
 	    	sessionMap.remove(session);
 	    	sessionMap2.remove(session);
-	    	
 	    }
 	    
 	@RequestMapping("/matching.do")
@@ -214,27 +189,29 @@ public class MatchController {
 	   public String roomload(HttpSession session, Model model,
 			                                      String sport_name, String gu) {
 	      Customer c = (Customer)session.getAttribute("loginInfo");
-	      String email = c.getEmail();
 	      System.out.println(sport_name + ":" + gu);
 	      try { 
-	    	 HashMap<String, Object> location = new HashMap<>();
-	    	 List<HashMap<String, Object>> roominfo = new ArrayList();
-	    	 
-	    	 location.put("sport_name", sport_name);
-	    	 location.put("gu", gu);
-	    	 List<Integer> location_list = mdao.getlocationid(location);
-	    	 for(int i : location_list){
-	    		 List<HashMap<String, Object>> list =  mdao.roomlist(i);
-	    		 for(HashMap<String,Object> t : list){
-	    			 roominfo.add(t);  // 중첩이 안돼니까 밖에 roominfo list에 더하는 방식
-	    		 }
-	    	 }
-	    	 for(HashMap<String, Object> l : roominfo){
-	    		 System.out.println(l);
-	    	 }
-	    	 
-	    	 model.addAttribute("roomInfo", roominfo);
-	    	 
+	    	  if(c == null){
+	    		  model.addAttribute("msg","0");
+	    	  } else {
+	    		 String email = c.getEmail();
+	    		 HashMap<String, Object> location = new HashMap<>();
+	 	    	 List<HashMap<String, Object>> roominfo = new ArrayList();
+	 	    	 
+	 	    	 location.put("sport_name", sport_name);
+	 	    	 location.put("gu", gu);
+	 	    	 List<Integer> location_list = mdao.getlocationid(location);
+	 	    	 for(int i : location_list){
+	 	    		 List<HashMap<String, Object>> list =  mdao.roomlist(i);
+	 	    		 for(HashMap<String,Object> t : list){
+	 	    			 roominfo.add(t);  // 중첩이 안돼니까 밖에 roominfo list에 더하는 방식
+	 	    		 }
+	 	    	 }
+	 	    	 for(HashMap<String, Object> l : roominfo){
+	 	    		 System.out.println(l);
+	 	    	 }
+	 	    	 model.addAttribute("roomInfo", roominfo);  
+	    	  }
 	      } catch (NamingException e) {
 	         e.printStackTrace();
 	      }

@@ -20,12 +20,16 @@
     <link rel="stylesheet" href="./bootstrap/assets/plugins/font-awesome/css/font-awesome.css">
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="./bootstrap/assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/room_style.css">
     <link rel="stylesheet" type="text/css" href="./bootstrap/css/jquery.selectlist.css">
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="./bootstrap/js/jquery.selectlist.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
 <style>
+body{
+background-color : #f9fbff;
+}
   .room{
     width:100%;
     height:50px;
@@ -111,6 +115,161 @@
   height:40px;
   line-height:40px;
   }
+  
+/* 버튼 스타일 */
+  button {
+ display: inline-block;
+ outline: none;
+ cursor: pointer;
+ text-align: center;
+ text-decoration: none;
+ font: 14px/100% Arial, Helvetica, sans-serif;
+ padding: .5em 2em .55em;
+ text-shadow: 0 1px 1px rgba(0,0,0,.3);
+ -webkit-border-radius: .5em;
+ -moz-border-radius: .5em;
+ border-radius: .5em;
+ -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+ -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+ box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+ text-decoration: none;
+}
+.button:active {
+ position: relative;
+ top: 1px;
+}
+
+/* blue */
+.blue {
+	color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+.blue:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.blue:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
+
+/* orange */
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+/* white */
+.white {
+  color: #606060;
+  border: solid 1px #b7b7b7;
+  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+  background: -moz-linear-gradient(top,  #fff,  #ededed);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+}
+.white:hover {
+  background: #ededed;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+  background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+}
+.white:active {
+  color: #999;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+  background: -moz-linear-gradient(top,  #ededed,  #fff);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+}
+/* rosy */
+.rosy {
+  color: #fae7e9;
+  border: solid 1px #b73948;
+  background: #da5867;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f16c7c), to(#bf404f));
+  background: -moz-linear-gradient(top,  #f16c7c,  #bf404f);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f16c7c', endColorstr='#bf404f');
+}
+.rosy:hover {
+  background: #ba4b58;
+  background: -webkit-gradient(linear, left top, left bottom, from(#cf5d6a), to(#a53845));
+  background: -moz-linear-gradient(top,  #cf5d6a,  #a53845);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#cf5d6a', endColorstr='#a53845');
+}
+.rosy:active {
+  color: #dca4ab;
+  background: -webkit-gradient(linear, left top, left bottom, from(#bf404f), to(#f16c7c));
+  background: -moz-linear-gradient(top,  #bf404f,  #f16c7c);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#bf404f', endColorstr='#f16c7c');
+}
+
+/* green */
+.green {
+  color: #e8f0de;
+  border: solid 1px #538312;
+  background: #64991e;
+  background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+  background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+}
+.green:hover {
+  background: #538018;
+  background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+  background: -moz-linear-gradient(top,  #6b9d28,  #436b0c);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+}
+.green:active {
+  color: #a9c08c;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
+  background: -moz-linear-gradient(top,  #4e7d0e,  #7db72f);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f');
+}
+
+/* pink */
+.pink {
+  color: #feeef5;
+  border: solid 1px #d2729e;
+  background: #f895c2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+  background: -moz-linear-gradient(top,  #feb1d3,  #f171ab);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+}
+.pink:hover {
+  background: #d57ea5;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f4aacb), to(#e86ca4));
+  background: -moz-linear-gradient(top,  #f4aacb,  #e86ca4);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4aacb', endColorstr='#e86ca4');
+}
+.pink:active {
+  color: #f3c3d9;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f171ab), to(#feb1d3));
+  background: -moz-linear-gradient(top,  #f171ab,  #feb1d3);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f171ab', endColorstr='#feb1d3');
+}
 </style>
 <script>
 //-------------------방 로드 -------------------------------------
@@ -126,14 +285,19 @@ $(function(){
 					method: 'POST',
 					data:{"sport_name":$sport_name, "gu":$gu},
 					success: function(responseData){
-		                var $parentObj = $("article");
-		                if($parentObj.length == 0){ //article영역의 유무에 따라 출력
-		                   $parentObj = $("body");
+						var data = responseData.trim();
+		                var $parentObj = $("#div_room_list");
+		                if(data == '0'){
+    						alert("로그인 후 이용해주세요.");
+    					} else{
+    						if($parentObj.length == 0){ //article영역의 유무에 따라 출력
+    			                   $parentObj = $("body");
+    			                }
+    			                //$parentObj.remove(); //객체 자체를 지워버리기
+    			                $parentObj.empty(); //객체는 있지만 기존내용 clear하고
+    	 		                $parentObj.html(responseData); //검색결과 출력
+    			             }
 		                }
-		                //$parentObj.remove(); //객체 자체를 지워버리기
-		                $parentObj.empty(); //객체는 있지만 기존내용 clear하고
- 		                $parentObj.html(responseData); //검색결과 출력
-		             }
       	});
       	return false; //기본이벤트(submit핸들러: method=get, action="")가 처리됨
     });
@@ -183,13 +347,19 @@ $(function(){
 					method: 'POST',
 					data:{"sport_name":$sport_name, "gu":$gu, "center_name":$center_name, "match_type":$match_type, "level":$level},
 					success: function(responseData){	
+						var popup = window.open("about:blank", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
     					var data = responseData.trim(); //공백을 없애기위해
     					if(data == '0'){
     						alert("이미 방이 존재합니다.");
     					} else{
+    						if(popup == null){
+    							alert("팝업 차단기능 혹은 팝업차단 프로그램이 동작중입니다. 팝업 차단 기능을 해제한 후 다시 시도하세요.");
+    						} else{
     						location.href="matching.do";
     						window.open("http://192.168.12.25:8889/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+    						}
     					}
+    						
     				} 
       	});
       	return false; //기본이벤트(submit핸들러: method=get, action="")가 처리됨
@@ -227,11 +397,15 @@ $(function(){
 </head> 
 
 <body>
-<header>
+<header style="margin-bottom:70px;">
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
 
-<article style="padding:20px;">
+<article>
+<div id = "title"  style= "text-align: center; "> 
+  <h1 style = "font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">실시간 매칭</h1></div>
+
+
 <div class="form-group">
 <c:set var="sport" value="${requestScope.list_sport }"/>
 <c:set var="gu" value="${requestScope.list_gu }"/>
@@ -255,7 +429,7 @@ $(function(){
   </div>
   &nbsp;&nbsp;&nbsp;
   <div class="form-group">
-  <button type="submit" name="btn_room_search">
+ <button type="submit" name="btn_room_search" class="blue">
   <span class="glyphicon glyphicon-search" aria-hidden="true">&nbsp;검색</span> 
   </button>
   </div>
@@ -263,50 +437,63 @@ $(function(){
 </div>
 
 <div class="form-group" style="margin:auto; width:500px; padding-bottom:20px;">
-  <button type="submit" class="btn btn-info" style="float:left;" name="btn_room_refresh">
-  <span class="glyphicon glyphicon-refresh" aria-hidden="true">&nbsp;새로고침</span> 
-  </button>
-  <button type="submit" style="float:right;">
+  <button type="submit" style="float:right;" class="orange">
   <span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="modal" data-target="#myModal">&nbsp;방만들기</span> 
   </button>
   </div>
   
 <hr>
 
-<div id="div_roomlist" style="width:500px; margin:0 auto;">
-
+<div id="div_roomlist" style="width:700px; margin:0 auto; font-family: 배달의민족 도현; src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;">
 <!-- 채팅방  -->
 <c:set var = "roomlist" value = "${requestScope.roomInfo }"/>
 <c:choose>
                <c:when test="${ empty requestScope.roomInfo }">
             
-               <h3>해당되는 채팅방이 존재하지 않습니다.</h3>
+               <h3 style="text-align:center;">해당되는 채팅방이 존재하지 않습니다.</h3>
                </c:when>
-               <c:otherwise>
-               
-              
-
-<c:forEach var = "room" items = "${roomlist }">
-<form class="room">
-  <div class="roomno">${room["room_id"]}</div>
-  <div class="roomname">
-      <div class="roomname_sub1">
-                  ${room["center_name"]}
-      </div>
-      <div class="roomname_sub2">
-                  ${room["gu"]} ${room["dong"]} ${room["adress"]}
-      </div>
-  </div>
-  <div class="roomtype">${room["match_type"]}</div>
-  <div class="roomtime">${room["level"]}</div>
-  <div class="roombtn">
-  <button type="submit" name="btn_room_In">입장</button>
-  </div>
-</form>
-</c:forEach>
+               <c:otherwise>            
+<!--                <div class="bs-calltoaction bs-calltoaction-warning">
+                    <div class="row">
+                        <div class="col-md-9 cta-contents">
+                            <h1 class="cta-title">Its a Call To Action</h1>
+                            <div class="cta-desc">
+                                <p>Describe the action here.</p>
+                                <p>Describe the action here.</p>
+                                <p>Describe the action here.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cta-button">
+                            <a href="#" class="btn btn-lg btn-block btn-warning">Go for It!</a>
+                        </div>
+                     </div>
+                </div> -->
+            <c:forEach var = "room" items = "${roomlist }">
+			<div class="col-md-12" style="margin-bottom:10px;">
+				<div class="offer offer-primary">
+					<div class="shape">
+						<div class="shape-text">
+							${room["room_id"]}						
+						</div>
+					</div>
+					<div class="offer-content">
+						<h4 class="lead">
+							${room["center_name"]}
+						</h4>
+                        <p>${room["gu"]} ${room["dong"]} ${room["adress"]}</p>				
+						<p style="float:left;">
+                           매칭 타입 :  ${room["match_type"]} <br>
+                           실력&수준 :  ${room["level"]}
+						</p>
+                         <button type="submit" name="btn_room_In" class="white" style="float:right;">입장</button>
+					</div>
+				</div>
+			</div>
+        </c:forEach>
  </c:otherwise>
  </c:choose>
-</div>
+               
+</div>             
 
 <!-- 방만들기 모달 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -382,7 +569,7 @@ $(function(){
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-</article>		
+</article>	
      
     <!-- Javascript -->          
     <script type="text/javascript" src="./bootstrap/assets/plugins/jquery-1.12.3.min.js"></script>
