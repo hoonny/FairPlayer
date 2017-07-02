@@ -37,6 +37,7 @@ $(function(){
    });
 });
 </script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="./bootstrap/css/menu_styles.css">
    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -44,8 +45,8 @@ $(function(){
    
 <!-- main.html에 포함될 페이지 -->
 <!-- Navigation -->
-
-   <div id='cssmenu'>
+<!--  -->
+   <div id='cssmenu' style="position: fixed;top: 0px;width: 100%;z-index: 100px;">
      <ul>
      <li class='active'><a href='main.jsp'>홈</a></li>
      <c:choose>

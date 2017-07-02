@@ -2,9 +2,14 @@ package com.my.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my.dao.SportsDAO;
 import com.my.vo.Location;
@@ -16,16 +21,12 @@ public class SportsController {
 	private SportsDAO dao;
 	
 	
-	@RequestMapping("test.do")
-	public void test( ){
+	@RequestMapping("asdf.do")
+	public void test(HttpServletRequest request, Model model, String id, String pwd, HttpSession session,
+			@RequestParam(value="flag", defaultValue = "0") int flag,
+			@RequestParam(value="nickname", defaultValue = "no") String nickname
+			 ){
 		System.out.println("test.do 들어옴");
-//		Sports s =  dao.test();
-		
-		List<String> s = dao.test();
-		System.out.println("다시 Controller");
-//		System.out.println(s.getCenter_name() + " / " + s.getSport_name());
-		for(String a : s){
-			System.out.println(a);
-		}
+		System.out.println(id + " / " + nickname + " / " +flag);
 	}
 }

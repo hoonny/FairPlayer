@@ -22,8 +22,15 @@ public class Customer  {
 		this.status = status;
 		this.point = point;
 	}
-	//회원가입용 Customer 객체
-	//seob
+	/**
+	 * 회원가입용
+	 * @param email
+	 * @param customer_name
+	 * @param nickname
+	 * @param password
+	 * @param call_no
+	 * @param status
+	 */
 	public Customer(String email, String customer_name, String nickname, String password, String call_no, String status){
 		super();
 		this.email = email;
@@ -32,6 +39,18 @@ public class Customer  {
 		this.password = password;
 		this.call_no = call_no;
 		this.status = status;
+	}
+	/**
+	 * 카카오 로그인용 메서드
+	 * @param email
+	 * @param nickname
+	 * @param password
+	 */
+	public Customer(String email, String nickname, String password){
+		super();
+		this.email = email;
+		this.password = password;
+		this.nickname = nickname;
 	}
 	
 	public String getEmail() {

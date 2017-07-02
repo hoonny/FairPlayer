@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my.dao.BoardDAOOracle;
 import com.my.dao.CustomerDAO;
@@ -26,27 +27,35 @@ public class CustomerController {
 	@Autowired
 	private CustomerDAO dao;
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String login(HttpServletRequest request, Model model, String id, String pwd, HttpSession session){
+	@RequestMapping("/login.do")
+	public String login(HttpServletRequest request, Model model, String id, String pwd, HttpSession session,
+						@RequestParam(value="flag", defaultValue = "0") int flag,
+						@RequestParam(value="nickname", defaultValue = "no") String nickname
+						){
 		String msg = "";
 		Customer c;
-		
+		System.out.println(id + " / " + nickname + " / " +flag);
 		session.removeAttribute("loginInfo");
 		
-		try {
-			c = dao.selectById(id);		//id1의 객체
-			String password = c.getPassword(); //id1의 비밀번호
-			if(password .equals(pwd)) {	
-				msg = "1";
-				session.setAttribute("loginInfo", c);
-			} else {
-				msg = "2";
+		if(flag == 0){
+			try {
+				c = dao.selectById(id);		//id1의 객체
+				String password = c.getPassword(); //id1의 비밀번호
+				if(password .equals(pwd)) {	
+					msg = "1";
+					session.setAttribute("loginInfo", c);
+				} else {
+					msg = "2";
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		}else if(flag == 1){
+			Customer c1 = new Customer(id, nickname, pwd);
+			msg = "1";
+			session.setAttribute("loginInfo", c1);
+			return "redirect:main.jsp";
 		}
-		
-		
 		
 		model.addAttribute("msg", msg);
 		String forwardURL = "/result.jsp";

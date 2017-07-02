@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- cc -->
+<!-- dd -->
 <title>searching.jsp</title>
 <!-- Meta -->
     <meta charset="utf-8">
