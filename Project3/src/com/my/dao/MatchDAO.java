@@ -73,4 +73,12 @@ public class MatchDAO {
 			throw e;
 		}
 	}
+	
+	public void deleteRoom(String email) throws NamingException{
+		try{
+			session.delete("Match_roomMapper.roomdel", email);
+		} catch(Exception e){
+			throw e;
+		}
+	}
 }
