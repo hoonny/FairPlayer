@@ -48,8 +48,8 @@
                    if(data == '1'){
                       alert("로그인 성공");
                       location.href='main.jsp';
-                   } else if(data == '-1'){
-                      alert("로그인 실패"); 
+                   } else if(data == '2'){
+                      alert("존재하지 않거나 비밀번호가 틀립니다."); 
                    } else{
                       alert(data);
                    }

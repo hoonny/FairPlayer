@@ -1,5 +1,6 @@
 package com.my.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,68 +33,56 @@ public class CustomerDAOOracle implements CustomerDAO {
 		}
 	}
 
-	@Override
-	public List<Customer> selectAll() throws Exception {
-
-		return session.selectList("CustomerMapper2.selectByAll");
-	}
 
 	@Override
 	public Customer selectById(String email) throws Exception {
 
 		return session.selectOne("CustomerMapper.selectById", email);	
 	}
+	
+	public void signout (String email){
+		session.update("CustomerMapper.signout",email);
+	}
+	
+	public void changepwd (HashMap<String,Object> list ){
+		session.update("CustomerMapper.changepwd",list);
+	}
+	
+	public void changenick (HashMap<String,Object> list ){
+		System.out.println(list);
+		session.update("CustomerMapper.changenick",list);
+	}
+	
+	public int checknickname(String nickname){
+		return session.selectOne("CustomerMapper.checknickname",nickname);
+	}
+
+	@Override
+	public List<Customer> selectAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	@Override
 	public List<Customer> selectByName(String name) throws Exception {
-
-		return session.selectList("CustomerMapper2.selectByName",name);
-
-
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	
-	public List<Customer> selectBystatus(String status) throws Exception {
-		return session.selectList("CustomerMapper2.selectBystatus",status);
-	}
-	
-	public List<Customer> selectBystatusnull() throws Exception {
-		return session.selectList("CustomerMapper2.selectBystatusnull");
-	}
-	
-	public void updatestatus(String id, String check) {
-		
-		if(check.equals("2")){
-		session.update("CustomerMapper2.updatestatusd", id);
-		}else if (check.equals("1")){
-	    session.update("CustomerMapper2.updatestatusb", id);
-		}else if (check.equals("3")){
-		session.update("CustomerMapper2.updatestatusnull", id);
-		}
-		
-		
-	}
-	
-	
-	@Override
-	public void delete(String id){
 
-		session.update("CustomerMapper2.delete", id);
-
-	}
 
 	@Override
-	public void update(Customer c){
-	
-	/*	if("".equals(c.getName())){
-		session.update("CustomerMapper2.updatepassword",c);	
-		}else {
-		session.update("CustomerMapper2.update",c);
-		}*/
+	public void delete(String id) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
-	
-	
-	
+
+	@Override
+	public void update(Customer c) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+		
 
 }
