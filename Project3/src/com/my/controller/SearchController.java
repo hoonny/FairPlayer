@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.dao.Like_listDAO;
@@ -80,14 +81,23 @@ public class SearchController {
 	}
 
 	@RequestMapping("/searchmain.do")
-	public String searchmain(Model model, String sports, String gu, HttpSession session) {
+	public String searchmain(Model model, String sports, String gu,
+			@RequestParam(value="dong", defaultValue = "no") String dong, HttpSession session) {
 		System.out.println("스포츠 : " + sports + " 구 : " + gu);
 		model.addAttribute("sports", sports);
 		model.addAttribute("gu", gu);
+		if(!(dong.equals("no"))){
+			model.addAttribute("dong", dong);	
+		}
+		
+		
 		List<String> list = new ArrayList<>();
 		
 		list.add(sports);
 		list.add(gu);
+		if(!(dong.equals("no"))){
+		list.add(dong);
+		}
 		session.setAttribute("issports", list);
 		String forwardURL = "/main.jsp";			
 		return forwardURL;
