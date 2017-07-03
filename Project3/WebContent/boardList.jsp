@@ -21,13 +21,11 @@
         text-align:center;
         padding:0;
         margin:0;
-        !important
 }
 
     #mainWrapper{
         width:610px;
         
-        !important
     }
 
     #mainWrapper > ul > li:first-child {
@@ -36,7 +34,6 @@
         height:40px;
         vertical-align:middle;
         line-height:30px;
-        !important
 }
 
     #ulTable {margin-top:10px;}
