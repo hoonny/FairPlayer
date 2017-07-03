@@ -190,9 +190,11 @@ public class MatchController {
 			                                      String sport_name, String gu) {
 	      Customer c = (Customer)session.getAttribute("loginInfo");
 	      System.out.println(sport_name + ":" + gu);
+	      String forwardURL = null;
 	      try { 
 	    	  if(c == null){
 	    		  model.addAttribute("msg","0");
+	    		  forwardURL = "/result.jsp";
 	    	  } else {
 	    		 String email = c.getEmail();
 	    		 HashMap<String, Object> location = new HashMap<>();
@@ -211,11 +213,13 @@ public class MatchController {
 	 	    		 System.out.println(l);
 	 	    	 }
 	 	    	 model.addAttribute("roomInfo", roominfo);  
+	 	    	 forwardURL = "/matching.do";
+	 	    	 model.addAttribute("sport_name",sport_name);
+	 	    	 model.addAttribute("gu",gu);
 	    	  }
 	      } catch (NamingException e) {
 	         e.printStackTrace();
 	      }
-	      String forwardURL = "/matching.do";
 	      return forwardURL;
 	   }
 
