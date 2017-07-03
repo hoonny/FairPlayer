@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- dd -->
+<!-- ee -->
 <title>searching.jsp</title>
 <!-- Meta -->
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="./bootstrap/assets/css/styles.css">
 	<!-- Search CSS -->
-	<link rel="stylesheet" type="text/css" href="search.css?ver=2"> 
+	<link rel="stylesheet" type="text/css" href="search.css?ver=3"> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -186,7 +186,7 @@
 	</select>
   </div>&nbsp;&nbsp;
   <div class="form-group">
-	  <button type="button" class="btn btn-success" onclick="search()">
+	  <button type="button" class="blue" onclick="search()">
 	  	<span class="glyphicon glyphicon-search" aria-hidden="true">&nbsp;검색</span> 
 	  </button>
   </div>
@@ -198,7 +198,7 @@
 
 <!-- **************************센터목록 리스트************************* -->
 <c:choose>
-<c:when test="${size > 1 }">
+<c:when test="${size > 0 }">
    <div class="form-inline div_list container">
          
       <c:forEach var="p" items="${list}" varStatus = "status">  
@@ -239,8 +239,23 @@
 					<!-- <span class="date">010-1234-5678</span> -->
 					<div class="div_h"><h1 class = "center_name" >${p.center_name }</h1></div>
 					<p style="font-weight: bold;">${p.gu } ${p.dong } ${p.adress }</p>
-					<p style="font-weight: bold;">가격 : ${p.price }</p>
-					<p style="font-weight: bold;">${p.call_no }</p>
+					<c:choose>
+						<c:when test="${p.price == 0 }">
+							<p style="font-weight: bold;">가격정보가 없습니다.</p>
+						</c:when>
+						<c:otherwise>
+							<p style="font-weight: bold;">기본요금 : ${p.price }원</p>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${p.call_no == null }">
+							<p style="font-weight: bold;">전화번호 정보가 없습니다.</p>
+						</c:when>
+						<c:otherwise>
+							<p style="font-weight: bold;">Tel. ${p.call_no }</p>
+						</c:otherwise>
+					</c:choose>
 					<input type="hidden" name="center_id" value="${p.center_id }" readonly>
 					<button class="bt_gps btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"  type="button" value="${p.sport_name},${p.center_name},${p.gu},${p.dong},${p.latitude},${p.longtitude}" id="btGps${p.center_id }" onclick="gpsMap(this.value)" style="background-color: white;border:none; outline: none;">
 						<img src="./bootstrap/assets/images/btgps.png">

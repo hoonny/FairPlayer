@@ -268,13 +268,7 @@ body {
     
     <div class="chat_window">
     <div class="top_menu">
-        <div class="buttons"><div class="button close">
-            
-        </div><div class="button minimize">
-            
-        </div><div class="button maximize">
-            
-        </div></div><div class="title">우리동네예체능 채팅방</div>
+       <div class="title">우리동네예체능 채팅방</div>
         </div>
         
         <ul class="messages" id="messageWindow">
@@ -299,7 +293,7 @@ body {
     
 </body>
     <script type="text/javascript">
-        var webSocket = new WebSocket('ws://localhost:8888/Project3/broadcasting');
+        var webSocket = new WebSocket('ws://192.168.12.25:8889/Project3/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
       onError(event);

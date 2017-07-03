@@ -29,7 +29,9 @@ $(function(){
             	location.href="boardList.do";  // 신고게시판 -> 게시판 화면
             } else if(url == 'main.jsp'){
             	location.href="main.jsp";      // 홈 -> 메인 화면	
-            } else{
+            } else if(url == 'customerupdate.do'){
+            	location.href="customerupdate.do";  // 회원정보관리 - > 그 화면	
+            }else{
             }
          }         
       });
@@ -46,7 +48,7 @@ $(function(){
 <!-- main.html에 포함될 페이지 -->
 <!-- Navigation -->
 <!--  -->
-   <div id='cssmenu' style="position: fixed;top: 0px;width: 100%;z-index: 100px;">
+   <div id='cssmenu' style="position: fixed;top: 0px;width: 100%;z-index: 990;">
      <ul>
      <li class='active'><a href='main.jsp'>홈</a></li>
      <c:choose>
@@ -63,6 +65,7 @@ $(function(){
        <li><a href='like_list.do'>관심목록</a></li>
        <li><a href='boardList.do'>신고게시판</a></li>
        <li style="float:right;"><a href='logout.do'>로그아웃</a></li>
+       <li style="float:right;"><a href='customerupdate.do'>회원정보관리</a></li>
        </c:otherwise>
      </c:choose>                      
      </ul>

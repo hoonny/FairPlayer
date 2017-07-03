@@ -87,6 +87,7 @@ public class Match_room {
 	public void join(int room_id, int count, String user){
 		if(rooms != null){
 			Chat_room chatroom = (Chat_room)rooms.get(room_id);
+			System.out.println("user:::" + user);
 			chatroom.setUser_id(user);
             chatroom.setCount(count+1);
 			rooms.put(room_id, chatroom);

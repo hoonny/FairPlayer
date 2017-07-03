@@ -49,6 +49,10 @@
 		select * from match_room where email = #{email}
 	</select>
 	
+	<delete id="roomdel" parameterType="string">
+	delete from match_room where email = #{email}
+	</delete>
+	
 	
 
 </mapper>
