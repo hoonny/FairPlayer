@@ -343,25 +343,26 @@ $(function(){
         console.log($sport_name + ":" + $gu + ":" + $center_name + ":" + $match_type + ":" + $level);
 		var url="roommake.do";		
 		console.log(url);
-      	$.ajax({	url: url,
-					method: 'POST',
-					data:{"sport_name":$sport_name, "gu":$gu, "center_name":$center_name, "match_type":$match_type, "level":$level},
-					success: function(responseData){	
-						var popup = window.open("about:blank", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
-    					var data = responseData.trim(); //공백을 없애기위해
-    					if(data == '0'){
-    						alert("이미 방이 존재합니다.");
-    					} else{
-    						if(popup == null){
-    							alert("팝업 차단기능 혹은 팝업차단 프로그램이 동작중입니다. 팝업 차단 기능을 해제한 후 다시 시도하세요.");
-    						} else{
-    						location.href="matching.do";
-    						window.open("http://192.168.12.25:8889/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
-    						}
-    					}
-    						
-    				} 
-      	});
+		
+		var popup = window.open("about:blank", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+		if(popup == null){
+			alert("팝업 차단기능 혹은 팝업차단 프로그램이 동작중입니다. 팝업 차단 기능을 해제한 후 다시 시도하세요.");
+		} else {
+			$.ajax({	url: url,
+				method: 'POST',
+				data:{"sport_name":$sport_name, "gu":$gu, "center_name":$center_name, "match_type":$match_type, "level":$level},
+				success: function(responseData){	
+					var data = responseData.trim(); //공백을 없애기위해
+					if(data == '0'){
+						alert("이미 방이 존재합니다.");
+					} else{
+						location.href="matching.do";
+						window.open("http://192.168.12.25:8889/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+					}
+						
+				} 
+  	});
+		}
       	return false; //기본이벤트(submit핸들러: method=get, action="")가 처리됨
     });
 });
@@ -371,8 +372,8 @@ $(function(){
 	var $btRoomIn = $("button[name=btn_room_In]");
 	$btRoomIn.click(function(){
 		console.log("방입장하기 클릭");
-		var $room_id = $(this).parent().siblings(".roomno").text();
-
+		var $room_no = $(this).parent().siblings().children(".shape-text").text();
+		var $room_id = $room_no.trim();
         console.log("room_id : "+$room_id);
 		var url="roomin.do";		
 		console.log(url);
@@ -380,13 +381,17 @@ $(function(){
 					method: 'POST',
 					data:{"room_id":$room_id},
 					success: function(responseData){	
+						var popup = window.open("about:blank", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
     					var data = responseData.trim(); //공백을 없애기위해
     					if(data == '0'){
     						alert("입장 할 수 없습니다.");
     					} else{
+    						if(popup == null){
+    							alert("팝업 차단기능 혹은 팝업차단 프로그램이 동작중입니다. 팝업 차단 기능을 해제한 후 다시 시도하세요.");
+    						} else{
     						location.href="matching.do";
     						window.open("http://192.168.12.25:8889/Project3/broadcast.html", "채팅방", "width=500, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
-    					}
+    						}}
     				} 
       	});
       	return false; //기본이벤트(submit핸들러: method=get, action="")가 처리됨
@@ -409,21 +414,33 @@ $(function(){
 <div class="form-group">
 <c:set var="sport" value="${requestScope.list_sport }"/>
 <c:set var="gu" value="${requestScope.list_gu }"/>
+<c:set var="sport_name" value="${requestScope.sport_name }"/>
+<c:set var="gu_name" value="${requestScope.gu }"/>
   <form class="form-inline" style="margin:auto; width:500px; border:2px solid; padding:10px; border-color: #7f7f7f; border-radius: 10px;">
   <img src="./bootstrap/assets/images/icon_select.png" alt="image" style="width:40px; height:40px; vertical-align:middle;">
   <span><B>검색목록</B></span>
   <div class="form-group">
   &nbsp;&nbsp;
     <select class="form-control" id="sport_name">
+    <c:if test="${sport_name != null }">
+             <option id="sport_name">${sport_name } </option>
+             </c:if>
     <c:forEach var="s" items="${sport}">
-             <option value="${s}">${s}</option>
+            <c:if test="${s != sport_name }">
+              <option id="sport_name" value="<c:out value="${s}"/>"><c:out value="${s}"/></option>
+          </c:if>
       </c:forEach>
     </select>
   </div>
 <div class="form-group">&nbsp;&nbsp;&nbsp;
    <select class="form-control" id="gu">
+    <c:if test="${gu_name != null }">
+             <option id="gu_name">${gu_name } </option>
+             </c:if>
       <c:forEach var="g" items="${gu}">
-             <option value="${g}">${g}</option>
+             <c:if test="${g != gu_name }">
+              <option id="gu_name" value="<c:out value="${g}"/>"><c:out value="${g}"/></option>
+          </c:if>
       </c:forEach>
    </select>
   </div>
@@ -570,7 +587,17 @@ $(function(){
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </article>	
-     
+         <footer class="footer text-center" style="position: absolute; top: 700px; width: 100%;">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">본 웹 페이지는 현재 FairPlay 팀에서 운영하고 있는 생활체육 검색 시스템이 적용 되어 있습니다. <br>
+                            사업자등록번호 : 123-45-6789  통신판매업신고 : 제 1234-서울금천-12345호<br>
+                      서울특별시 구로구 디지털로34길 43 코오롱싸이언스밸리1차 401호 ㈜ 우리동네 예체능 (대표자 : 윤웅재)<br>
+                      고객센터 1234-5678 (평일 오전 8시 ~ 오후 8시 / 주말 및 공휴일 오전 9시 ~ 오후 6시)<br>
+                       copyright ⓒ 2017. ALL RIGHTS RESERVED BY KITRI FairPlay</small>
+            
+        </div><!--//container-->
+    </footer>
     <!-- Javascript -->          
     <script type="text/javascript" src="./bootstrap/assets/plugins/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="./bootstrap/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
