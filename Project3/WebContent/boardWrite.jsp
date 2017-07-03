@@ -55,8 +55,10 @@ var $form = $("form");
                        cache: false,
                        success: function (responseData) {
                     	console.log("성공");
-            	   $("body").empty();
-            	   $("body").html(responseData);
+                    	/*$("article").empty();
+            	    $("article").html(responseData); */
+            	    alert("성공");
+            	   location.href="main.jsp";
                }//end success
         });//end ajax
         return false;
@@ -67,10 +69,12 @@ var $form = $("form");
 </script>
 </head>
 <body style="background-color: #F9FFFF">
+
 <header> 
      <jsp:include page="menu.jsp"></jsp:include>
 </header>
    <br><br><br><br>
+   <article>
 <form method="post" enctype="multipart/form-data" action="boardWrite.do">
 <div class="container">
 
@@ -83,7 +87,7 @@ var $form = $("form");
     
             <tr>
                 <th>제목: </th>
-                <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+                <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/ maxlength="20"></td>
             </tr>
             <tr>
                 <th>내용: </th>
@@ -114,6 +118,7 @@ var $form = $("form");
 </table>
 </div>
 </form>
+</article>
 </body>
 </html>
 

@@ -47,19 +47,26 @@ public class BoardController {
       try {
 		MultipartRequest multi = new MultipartRequest(rq, savePath, maxPostSize, "utf-8", new DefaultFileRenamePolicy());
 		System.out.println("init");
+
+		
+		
+		
+		Enumeration<String> files=multi.getFileNames();
+		 while(files.hasMoreElements()){
+			 
 		String subject = multi.getParameter("subject");
 		String content = multi.getParameter("content");
 		String password = multi.getParameter("password");
-		System.out.println(subject+":"+content+":"+password);
-		
-		Enumeration<String> files=multi.getFileNames();
+		System.out.println(subject+":"+content+":"+password);	 
+			 
 		String file=files.nextElement();
-		
-		
 		//중복으로 인해 변경된 파일 명.
 		String filename=multi.getFilesystemName(file);
 		//원본 파일명 저장
 		String originfilename=multi.getOriginalFileName(file);
+		
+		
+
 		
 		String image_url = filename;
 		System.out.println(image_url);
@@ -79,6 +86,8 @@ public class BoardController {
 	         
 	         model.addAttribute("msg", board);
 	         model.addAttribute("nick", nick);
+		 }
+
 
 	} catch (IOException e) {
 		e.printStackTrace();
