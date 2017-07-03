@@ -47,7 +47,7 @@
         text-align:center;
         height: 30px;
         line-height: 30px;
-        font-size: 12pt;
+        font-size: 13pt;
         font-family: 배달의민족 도현; 
         src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;
         
