@@ -13,6 +13,21 @@
 	insert into customers(email,customer_name,nickname,password,call_no,status) 
 	values(#{email},#{customer_name},#{nickname},#{password},#{call_no},#{status})
 	</insert>	
+
+	<update id = "signout" parameterType="String">
+		update customers set status = 'd' where email = #{email}
+	</update>
 	
+	<update id = "changepwd" parameterType="hashmap">
+		update customers set password = #{password} where email = #{email}
+	</update>
+	
+	<update id = "changenick" parameterType="hashmap">
+		update customers set nickname = #{nickname} where email = #{email}
+	</update>
+	
+	<select id = "checknickname" parameterType="String" resultType="int">
+		select count(*) from customers where nickname = #{nickname}
+	</select>
 	</mapper>
 
