@@ -2,6 +2,7 @@ package com.my.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,6 +42,7 @@ public class CustomerController {
 			try {
 				c = dao.selectById(id);		//id1의 객체
 				String password = c.getPassword(); //id1의 비밀번호
+				System.out.println(password);
 				if(password .equals(pwd)) {	
 					msg = "1";
 					session.setAttribute("loginInfo", c);
@@ -77,25 +79,24 @@ public class CustomerController {
 		String msg="";
 		String status = "a";
 
-		if( email == null || nick == null || pwd == null || repwd == null || tel == null || tel1 == null || tel2 == null){
+		if( email.equals("") || nick.equals("") || pwd.equals("") || repwd.equals("") || tel.equals("") || tel1.equals("") || tel2.equals("")){
 			msg = "2";
-		} else {
-
-			try {
-				String num = tel+"-"+tel1+"-"+tel2;
-				Customer c = new Customer();
-				c.setEmail(email);
-				c.setCustomer_name(name);
-				c.setNickname(nick);
-				c.setPassword(pwd);
-				c.setStatus(status);
-				c.setCall_no(num);
-				dao.singup(c);
-				msg = "1";
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		} else{
+					try {
+						String num = tel+"-"+tel1+"-"+tel2;
+						Customer c = new Customer();
+						c.setEmail(email);
+						c.setCustomer_name(name);
+						c.setNickname(nick);
+						c.setPassword(pwd);
+						c.setStatus(status);
+						c.setCall_no(num);
+						dao.singup(c);
+						msg = "1";
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 		
 		model.addAttribute("msg", msg);
 		
@@ -113,12 +114,17 @@ public class CustomerController {
 
 		Customer c;
 		try {
-			c = dao.selectById(email);	
-			if(c == null){
+			c = dao.selectById(email);
+			if (!email.contains("@")){
+				msg = "2";
+			}else if(Pattern.matches("[가-힣]", email)){
+				msg ="3";
+			}else if(c == null){
 				msg = "1";		//selectById한값에 id가 없을 경우 1을 전송
 			} else {
 				msg = "-1";		//그 반대.
 			}
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

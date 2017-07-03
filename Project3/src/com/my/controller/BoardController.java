@@ -71,11 +71,11 @@ public class BoardController {
 	      board.setImage_url(image_url);
 	      
 
-	         if (content == null || subject == null || password == null){
-	      }else {
+
 	      dao.insert(board);
 	      dao.setGrp(email);
-	      }
+
+
 	         
 	         model.addAttribute("msg", board);
 	         model.addAttribute("nick", nick);

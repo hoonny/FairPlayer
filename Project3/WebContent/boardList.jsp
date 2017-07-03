@@ -47,7 +47,7 @@
         text-align:center;
         height: 30px;
         line-height: 30px;
-        font-size: 13pt;
+        font-size: 12pt;
         font-family: 배달의민족 도현; 
         src: ./bootstrap/fonts/BMDOHYEON_ttf.ttf;
         
@@ -259,15 +259,15 @@ $(function(){
                     
                     <li id="tablekk">
                         <ul>
-                            <li   style="height: 76px; line-height: 76px;  text-align: center; font-size: 11pt;" class="k1"><%=b.getRepboard_no() %></li>
+                            <li   style="height: 76px; line-height: 76px;  text-align: center; font-size: 10pt;" class="k1"><%=b.getRepboard_no() %></li>
                             <%if (b.getParent_no() == 0  ){ %>  
-                            <li  class="left" style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt; " class="k2"><a class="k2" href="" style="color: black; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>
+                            <li  class="left" style="height: 76px; line-height: 76px; text-align: center; font-size: 10pt; " class="k2"><a class="k2" href="" style="color: black; font-size: 10pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>
                              <%} else { %>
-							<li  class="left" style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt;" class="k2"><a class="k2" href="" style="color: #AE905E; font-size: 12pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>                           
+							<li  class="left" style="height: 76px; line-height: 76px; text-align: center; font-size: 10pt;" class="k2"><a class="k2" href="" style="color: #AE905E; font-size: 10pt;" at="<%=b.getRepboard_no()%>" id="viewsup"><%=b.getSubject() %></a></li>                           
                             <%} %>
-                            <li  style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt;" class="k4"><%=b.getDate() %></li>
-                            <li style="height: 76px; line-height: 76px; text-align: center; font-size: 11pt;" class="k5"><%=b.getNickname() %></li>
-                            <li  style="height: 76px; line-height: 76px ;text-align: center; font-size: 11pt;" class="k6"><%=b.getViews() %></li>
+                            <li  style="height: 76px; line-height: 76px; text-align: center; font-size: 10pt;" class="k4"><%=b.getDate() %></li>
+                            <li style="height: 76px; line-height: 76px; text-align: center; font-size: 10pt;" class="k5"><%=b.getNickname() %></li>
+                            <li  style="height: 76px; line-height: 76px ;text-align: center; font-size: 10pt;" class="k6"><%=b.getViews() %></li>
                         </ul>  
                     </li>
                          <%} %>           

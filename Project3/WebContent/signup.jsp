@@ -42,6 +42,9 @@
 <script>
 $(function(){
 
+	
+	
+	
 	var cnt = 0;
 	<!--중복 확인!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
 	   $("#dup").click(function() {
@@ -54,9 +57,12 @@ $(function(){
 	                if(responseData == 1){
 	                	alert("사용 가능한 아이디 입니다.");
 	                	cnt++;
-	                }
-	                else if(responseData == -1){
+	                }else if(responseData == -1){
 	                	alert("중복된 아이디 입니다. 다른 아이디를 사용해주세요.");
+	                }else if(responseData == 2){
+	                	alert("아이디는 이메일 형식으로 작성해주세요.");
+	                }else if(responseData == 3){
+	                	alert("한글은 사용할 수 없습니다..");
 	                }
 	                }         
 	      });//ajax 
@@ -88,6 +94,7 @@ $(function(){
 	    	return false;
 	    }
 	    
+	    
 	      $.ajax({ url : url,     
 	               method : 'post',
 	               data :  {email:$email, nick:$nick, pwd:$pwd, repwd:$repwd, tel:$tel, tel1:$tel1, tel2:$tel2, name:$name },
@@ -95,13 +102,15 @@ $(function(){
 	                if(cnt>=1){
 	            		if(responseData == 1){
 	                		alert("회원가입 완료");
-	                		location.href = "index.html";
+	                		location.href = "main.jsp";
 	                	}
 	                	else if(responseData == 2){
 	                		alert("모든 입력사항을 기재해주세요.");
 	                	}
 	      			}else if (cnt==0){
 	      				alert("중복확인을 해주세요.");
+	      			}else if(responseData ==4){
+	      				alert("아이디는 이메일형식으로 작성해주세요.");
 	      			}
 	                
 	               }
