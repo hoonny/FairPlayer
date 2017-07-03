@@ -198,7 +198,7 @@
 
 <!-- **************************센터목록 리스트************************* -->
 <c:choose>
-<c:when test="${size > 1 }">
+<c:when test="${size > 0 }">
    <div class="form-inline div_list container">
          
       <c:forEach var="p" items="${list}" varStatus = "status">  
