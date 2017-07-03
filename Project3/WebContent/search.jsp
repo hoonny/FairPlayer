@@ -22,7 +22,7 @@
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="./bootstrap/assets/css/styles.css">
 	<!-- Search CSS -->
-	<link rel="stylesheet" type="text/css" href="search.css?ver=3"> 
+	<link rel="stylesheet" type="text/css" href="search.css?ver=1"> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -342,7 +342,24 @@
 				},2000) 
 			}
 			</script>
-</article>  
+</article>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+    <footer class="footer text-center" style="position: absolute;top: 1700px;width: 100%;">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">본 웹 페이지는 현재 FairPlay 팀에서 운영하고 있는 생활체육 검색 시스템이 적용 되어 있습니다. <br>
+            								사업자등록번호 : 123-45-6789  통신판매업신고 : 제 1234-서울금천-12345호<br>
+											서울특별시 구로구 디지털로34길 43 코오롱싸이언스밸리1차 401호 ㈜ 우리동네 예체능 (대표자 : 윤웅재)<br>
+											고객센터 1234-5678 (평일 오전 8시 ~ 오후 8시 / 주말 및 공휴일 오전 9시 ~ 오후 6시)<br>
+											 copyright ⓒ 2017. ALL RIGHTS RESERVED BY KITRI FairPlay</small>
+            
+        </div><!--//container-->
+    </footer>  
 <!-- **************************지도 리스트************************* -->		
 
 	<!-- Javascript -->
