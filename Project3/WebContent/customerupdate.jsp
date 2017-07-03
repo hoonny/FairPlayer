@@ -151,6 +151,10 @@ $(document).ready(function() {
                         <td>연락처:</td>
                         <td>${c.call_no }</td>
                       </tr>
+                        <tr>
+                        <td>포인트:</td>
+                        <td>${c.point }</td>
+                      </tr>
                     </tbody>
                   </table>
                   
