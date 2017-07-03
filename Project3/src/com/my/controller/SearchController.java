@@ -59,7 +59,6 @@ public class SearchController {
 				//dong목록
 				List<String> list3 = dao.selectByGu(gu);
 				System.out.println("동:"+ list3);
-				session.setAttribute("dong_all", list3);
 				model.addAttribute("dong_all", list3);
 				
 				//좋아요
@@ -89,7 +88,7 @@ public class SearchController {
 		
 		list.add(sports);
 		list.add(gu);
-		session.setAttribute("sports", list);
+		session.setAttribute("issports", list);
 		String forwardURL = "/main.jsp";			
 		return forwardURL;
 	}
@@ -107,7 +106,8 @@ public class SearchController {
 			String sports_i = null;
 			String gu_i = null;
 			
-			List<String> l = (List<String>) session.getAttribute("sports");
+			List<String> l = (List<String>) session.getAttribute("issports");
+			System.out.println("세션(sports)값 : "+ l);
 			if(l == null){ //menu에서 들어올시
 				model.addAttribute("sports", "당구");
 				model.addAttribute("gu", "구로구");
