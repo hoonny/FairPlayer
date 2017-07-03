@@ -48,7 +48,7 @@ $(function(){
 <!-- main.html에 포함될 페이지 -->
 <!-- Navigation -->
 <!--  -->
-   <div id='cssmenu' style="position: fixed;top: 0px;width: 100%;z-index: 100px;">
+   <div id='cssmenu' style="position: fixed;top: 0px;width: 100%;z-index: 990;">
      <ul>
      <li class='active'><a href='main.jsp'>홈</a></li>
      <c:choose>
