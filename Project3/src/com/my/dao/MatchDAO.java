@@ -76,6 +76,7 @@ public class MatchDAO {
 	
 	public void deleteRoom(String email) throws NamingException{
 		try{
+			System.out.println("dao접근 완료");
 			session.delete("Match_roomMapper.roomdel", email);
 		} catch(Exception e){
 			throw e;
