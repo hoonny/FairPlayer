@@ -587,7 +587,7 @@ $(function(){
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </article>	
-         <footer class="footer text-center" style="position: absolute; top: 700px; width: 100%;">
+         <footer class="footer text-center" style="position: absolute; top: 90%; width: 100%;">
         <div class="container">
             <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
             <small class="copyright">본 웹 페이지는 현재 FairPlay 팀에서 운영하고 있는 생활체육 검색 시스템이 적용 되어 있습니다. <br>

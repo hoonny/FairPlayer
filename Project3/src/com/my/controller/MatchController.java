@@ -42,6 +42,7 @@ public class MatchController {
 	private static Match_room matchRoom = new Match_room();
 	private static int room_no;
 	private static String email;
+	private static String owner_id;
 	
 	@Autowired
 	SearchDAO sdao;
@@ -94,12 +95,30 @@ public class MatchController {
 	    }
 	    
 	    @OnClose
-	    public void onClose(Session session) throws IOException {
+	    public String onClose(Session session) throws IOException {
 	    	Chat_room cr = users.get(session);
+	    	String email = sessionMap2.get(session);
 	    	System.out.println(email+ "님이 종료하였습니다.");
+	    	owner_id = cr.getOwner_id();
+	    	System.out.println("방장:"+owner_id);
 	    	users.remove(session);
 	    	sessionMap.remove(session);
 	    	sessionMap2.remove(session);
+    	    if(email.equals(owner_id)){
+	    		System.out.println("호출햇다.");
+	    		return "roomdelete.do";
+	    	}
+    	return null;
+	    }
+	    
+	    @RequestMapping("roomdelete.do")
+	    public void roomdelete(){
+	    	try {
+	    		System.out.println(owner_id);
+				mdao.deleteRoom(owner_id);
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
 	    }
 	    
 	@RequestMapping("/matching.do")
